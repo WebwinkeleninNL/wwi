@@ -1,70 +1,277 @@
-<!DOCTYPE html>
-<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
-<!--[if lt IE 7 ]> <html class="ie6" lang="en"> <![endif]-->
-<!--[if IE 7 ]>    <html class="ie7" lang="en"> <![endif]-->
-<!--[if IE 8 ]>    <html class="ie8" lang="en"> <![endif]-->
-<!--[if IE 9 ]>    <html class="ie9" lang="en"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <title>
-    <%= content_for?(:title) ? "#{site_name}: #{yield(:title)}" : site_name %>
-  </title>
-  <link rel="shortcut icon" href="/assets/favicon.ico" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=1100" />
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/jquery.nouislider.css">
+<title>Webwinkelenin.nl</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src="js/jquery.customSelect.js"></script>
+<script type="text/javascript" src="js/jquery.nouislider.js"></script>
 
-  <%= stylesheet_link_tag "normalize.css" %>
-  <%= stylesheet_link_tag "foundation_and_overrides.css" %>
-  <%= stylesheet_link_tag 'site/app.css' %>
-  <%= javascript_include_tag 'vendor/custom.modernizr' %>
-
-    <!--[if lt IE 8]
-  <%= stylesheet_link_tag 'ie.css', :media => 'screen, projection'%>
-  <![endif]-->
-  <!--[if lt IE 7]
-      <%= stylesheet_link_tag 'ie6.css', :media => 'screen, projection' %>
-  <![endif]-->
-  <%= csrf_meta_tag %>
-
-  <%= yield :head %>
-
-  <%= render 'shared/metadata' %>
-
+<script type="text/javascript">
+$(function(){
+  $('select.styled').customSelect();
+});
+</script>
 </head>
-<body >
-<div id='body_wrapper'>
 
-  <%= render :partial => '/shared/welcome_header'%>
+<body>
+<div class="top-nav">
+<div class="header container">
 
-  <% if notice || alert %>
-    <div class="row">
-      <% if notice || alert %>
-        <div class="flash_messages">
-          <%= raw "<div data-alert class='alert-box warning'> #{notice} <a href='' class='close'>&times;</a></div>"  if notice %>
-          <%= raw "<div data-alert class='alert-box alert'>#{alert} <a href='' class='close'>&times;</a></div>"     if alert %>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
-
-    <div id='content_wrapper' class='row'>
-      <%= yield %>
-    </div>
-    <div id='prefooter_wrapper'>&nbsp;</div>
+<div class="logo">
+<a href="/"><img title="Webwinkelenin" alt="Webwinkelenin" src="images/logo.png"></a>
 </div>
-  <%= render 'shared/main_footer' %>
-  <%= render 'shared/google_analytics' unless @disable_ga %>
-  <%= yield :bottom %>
+<div class="header-right">
+<div class="shoppingbag">
+<a href="/">
+<img class="cart" alt="cart" src="images/cart.png">
+</a>
+<a class="bag-items minicart" rel="nofollow" href="/">0 ITEMS, TOTAAL €0,00</a>
+</div>
+</div>
+<div class="language">
+<select class="styled">
+  <option>Nederland</option>
+  <option>Duits</option>
+  <option>Engels</option>
+</select>
+</div>
+<ul class="topmenu">
+<li><img class="cart" alt="user" src="images/user.png"></li>
+<li>
+<a href="/">Klant Login</a>
+</li>
+<li>
+<a href="/">Aanmelden</a>
+</li>
+</ul>
+</div>
+</div>
 
-  <%= javascript_include_tag 'application' %>
-  <script>
-  jQuery(window).ready(
-    function() {
-      jQuery('.flash_notice').delay(6000).slideUp( 'slow');
-      jQuery('.flash_error').delay(6000).slideUp( 'slow');
+
+<div class="container">
+<div class="mainmenu">
+<ul>
+<li class="home"><a href="/"><img alt="Home" src="images/home.png"></a></li>
+<li><a href="/">Over ons</a></li>
+<li><a href="/overzicht.html">Productcategorie</a></li>
+<li><a href="/overzicht.html">Shop</a></li>
+<li><a href="/">Storelocator</a></li>
+</ul>
+</div>
+<div class="search">
+<form name="productsearchform" action="/" method="post">
+<input type="hidden" value="Y" name="simple_search">
+<input type="hidden" value="search" name="mode">
+<input type="hidden" value="Y" name="posted_data[by_title]">
+<input type="hidden" value="Y" name="posted_data[by_shortdescr]">
+<input type="hidden" value="Y" name="posted_data[by_fulldescr]">
+<input type="hidden" value="Y" name="posted_data[by_sku]">
+<input type="hidden" value="all" name="posted_data[including]">
+<input type="text" placeholder="Zoeken..." name="posted_data[substring]" size="24">
+<a href="javascript:document.productsearchform.submit()">
+<img alt="Zoeken" src="images/search.png">
+</a>
+</form>
+</div>
+
+
+<div class="usp">
+Gratis Verzending vanaf &euro; 50!&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;Vóór 17 uur besteld morgen in huis&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;Gratis retourneren&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;Kies je afleverdatum
+</div>
+
+<div class="clearfix"></div>
+
+<div class="slideshow">
+<img alt="sfeer" src="images/sfeerfoto.jpg">
+</div>
+
+<div class="filterblock">
+
+<form method="get">
+
+<label for="city">Kies uw stad</label>
+<select class="styled">
+  <option>Hilversum</option>
+  <option>Utrecht</option>
+  <option>Rotterdam</option>
+</select>
+<div class="clearfix"></div>
+<label for="category">Categorie</label>
+<select class="styled">
+  <option>Schoenen</option>
+  <option>Tassen</option>
+  <option>Broeken</option>
+</select>
+<div class="clearfix"></div>
+<label for="gender">Geslacht</label>
+<select class="styled">
+  <option>Dames</option>
+  <option>Heren</option>
+  <option>Kinderen</option>
+</select>
+<div class="clearfix"></div>
+<label for="vendor">Merk</label>
+<select class="styled">
+  <option>Timberland</option>
+  <option>Tony Mora</option>
+  <option>Viavai</option>
+</select>
+<div class="clearfix"></div>
+<label for="price">Prijs</label>
+<div class="priceblock">
+<div class="noUiSlider"></div>
+<input id="min-euro" type="text">
+<input id="max-euro" type="text">
+</div>
+<div class="clearfix"></div>
+<label for="shop">Shop</label>
+<select class="styled">
+  <option>Elias Shoes</option>
+  <option>Minix Store</option>
+</select>
+<input class="submit" type="submit" value="Bekijk nu!" />
+</form>
+
+</div>
+
+<div class="clearfix"></div>
+<div class="promoblock">
+<ul>
+<li><a href="/"><img alt="promoblock1" src="images/promoblock1.jpg"></a><h2>Dames</h2></li>
+<li><a href="/"><img alt="promoblock2" src="images/promoblock2.jpg"></a><h2>Heren</h2></li>
+<li><a href="/"><img alt="promoblock3" src="images/promoblock3.jpg"></a><h2>Kinderen</h2></li>
+<li><a href="/"><img alt="promoblock4" src="images/promoblock4.jpg"></a><h2>Accessoires</h2></li>
+<li><a href="/"><img alt="promoblock5" src="images/promoblock5.jpg"></a></li>
+</ul>
+</div>
+<div class="clearfix">&nbsp;</div>
+<div class="promoblock">
+<ul>
+<li><a href="/"><img width="340" alt="promoblock6" src="images/promoblock6.jpg"></a></li>
+<li><a href="/"><img width="340" alt="promoblock7" src="images/promoblock7.jpg"></a></li>
+<li><a href="/"><img width="340" alt="promoblock8" src="images/promoblock8.jpg"></a></li>
+</ul>
+</div>
+<div class="clearfix"></div>
+<div class="footer">
+
+<div class="footer-menu">
+
+<div class="footer-block">
+<h5>Collecties</h5>
+<ul>
+<li><a href="/">Damesmode</a></li>
+<li><a href="/">Herenmode</a></li>
+<li><a href="/">Accessoires</a></li>
+<li><a href="/">Sale</a></li>
+</ul>
+</div>
+
+<div class="footer-block">
+<h5>Informatie</h5>
+<ul>
+<li><a href="/">Sed ut perspiciatis </a></li>
+<li><a href="/">Unde omnis iste natus</a></li>
+<li><a href="/">Error sit voluptatem</a></li>
+<li><a href="/">Accusantium doloremque</a></li>
+<li><a href="/">Laudantium</a></li>
+<li><a href="/">Totam rem aperiam</a></li>
+</ul>
+</div>
+
+<div class="footer-block">
+<h5>Klantenservice</h5>
+<ul>
+<li><a href="/">Sed ut perspiciatis </a></li>
+<li><a href="/">Unde omnis iste natus</a></li>
+<li><a href="/">Error sit voluptatem</a></li>
+<li><a href="/">Accusantium doloremque</a></li>
+<li><a href="/">Laudantium</a></li>
+<li><a href="/">Totam rem aperiam</a></li>
+</ul>
+</div>
+
+<div class="footer-block">
+<h5>Overig</h5>
+<ul>
+<li><a href="/">Sed ut perspiciatis </a></li>
+<li><a href="/">Unde omnis iste natus</a></li>
+<li><a href="/">Error sit voluptatem</a></li>
+<li><a href="/">Accusantium doloremque</a></li>
+<li><a href="/">Laudantium</a></li>
+<li><a href="/">Totam rem aperiam</a></li>
+</ul>
+</div>
+
+<div class="footer-block">
+<h5>Webwinkelenin.nl</h5>
+<ul>
+<li>WWI Utrecht</li>
+<li>WWI Amsterdam</li>
+<li>WWI Rotterdam</li>
+<li>&nbsp;</li>
+<li>Ma t/m vrij 10.00 - 21.00 uur</li>
+<li>Zat 10.00 - 17.00 uur</li>
+<li>&nbsp;</li>
+<li>Amsterdam & Utrecht:</li>
+<li>(maandag gesloten)</li>
+</ul>
+</div>
+
+</div>
+
+</div>
+
+
+
+
+<div class="secondfooter">
+
+<ul class="secondfooter-links">
+
+<li><a href="/">Sitemap</a></li>
+<li>|</li>
+<li><a href="/">Over ons</a></li>
+<li>|</li>
+<li><a href="/">Disclaimer</a></li>
+<li>|</li>
+<li><a href="/">Contact</a></li>
+</ul>
+
+<ul class="copyright">
+  <li>Copyright (c) 2014&nbsp;&nbsp;|&nbsp;&nbsp;Powered by Online Exposure</li>
+</ul>
+
+</div>
+</div>
+
+</div>
+<script>
+function writeDollar ( ammount ) {
+  ammount = ( 1.35 * parseFloat(ammount) );
+  $("#dollar").text( '$' + ammount.toFixed(2) );
+}
+
+$(function(){
+
+  // Run noUiSlider
+  $('.noUiSlider').noUiSlider({
+     range: [0,100]
+    ,start: [20,80]
+    ,behaviour: 'extend-tap'
+    ,handles: 2
+    ,serialization: {
+      to: [$("#min-euro"),
+      $("#max-euro")]
+
     }
-  );
-  </script>
+  });
+});
 
+</script>
 </body>
-  <%= yield :below_body %>
 </html>

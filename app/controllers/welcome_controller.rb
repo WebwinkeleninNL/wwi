@@ -10,7 +10,7 @@ class WelcomeController < ApplicationController
       if current_user && current_user.admin?
         redirect_to admin_merchandise_products_url
       else
-        redirect_to login_url
+        #redirect_to login_url
       end
     end
   end

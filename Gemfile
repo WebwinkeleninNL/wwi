@@ -93,3 +93,6 @@ group :test do
   gem "faker"
 
 end
+
+gem 'capistrano', '~> 3.1.0'
+
