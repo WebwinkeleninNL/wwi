@@ -15,7 +15,6 @@ class Ability
       can :manage, Order do |action, order|
         action != :destroy && order.state != 'complete' && order.user_id == user.id
       end
-
     end
   end
 end

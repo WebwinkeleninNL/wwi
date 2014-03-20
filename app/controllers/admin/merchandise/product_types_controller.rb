@@ -2,7 +2,7 @@ class Admin::Merchandise::ProductTypesController < Admin::BaseController
   helper_method :sort_column, :sort_direction
   respond_to :html, :json
   def index
-    @product_types = ProductType.of(current_user).admin_grid(params).order(sort_column + " " + sort_direction).
+    @product_types = ProductType.admin_grid(params).order(sort_column + " " + sort_direction).
                                               paginate(:page => pagination_page, :per_page => pagination_rows)
   end
 
@@ -55,7 +55,7 @@ class Admin::Merchandise::ProductTypesController < Admin::BaseController
   private
 
   def allowed_params
-    params.require(:product_type).permit( :name, :parent_id ).merge(merchant_id: current_user.merchant_id)
+    params.require(:product_type).permit( :name, :parent_id )
   end
 
   def form_info

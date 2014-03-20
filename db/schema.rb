@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140320213331) do
+ActiveRecord::Schema.define(version: 20140320232902) do
 
   create_table "accounting_adjustments", force: true do |t|
     t.integer  "adjustable_id",                           null: false
@@ -348,16 +348,14 @@ ActiveRecord::Schema.define(version: 20140320213331) do
   add_index "product_properties", ["property_id"], name: "index_product_properties_on_property_id"
 
   create_table "product_types", force: true do |t|
-    t.string  "name",                       null: false
+    t.string  "name",                     null: false
     t.integer "parent_id"
-    t.boolean "active",      default: true
+    t.boolean "active",    default: true
     t.integer "rgt"
     t.integer "lft"
-    t.integer "merchant_id"
   end
 
   add_index "product_types", ["lft"], name: "index_product_types_on_lft"
-  add_index "product_types", ["merchant_id"], name: "index_product_types_on_merchant_id"
   add_index "product_types", ["parent_id"], name: "index_product_types_on_parent_id"
   add_index "product_types", ["rgt"], name: "index_product_types_on_rgt"
 
@@ -569,8 +567,11 @@ ActiveRecord::Schema.define(version: 20140320213331) do
   add_index "shipments", ["shipping_method_id"], name: "index_shipments_on_shipping_method_id"
 
   create_table "shipping_categories", force: true do |t|
-    t.string "name", null: false
+    t.string  "name",        null: false
+    t.integer "merchant_id"
   end
+
+  add_index "shipping_categories", ["merchant_id"], name: "index_shipping_categories_on_merchant_id"
 
   create_table "shipping_methods", force: true do |t|
     t.string   "name",             null: false

@@ -1,6 +1,4 @@
 class ProductType < ActiveRecord::Base
-  include MerchantScope
-
   acts_as_nested_set  #:order => "name"
   has_many :products, dependent: :restrict_with_exception
 

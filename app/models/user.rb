@@ -36,6 +36,7 @@ class User < ActiveRecord::Base
   include UserCim
   include Presentation::UserPresenter
   include UserEmailer
+  include MerchantScope
 
   acts_as_authentic do |config|
     config.validate_email_field

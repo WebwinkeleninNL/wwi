@@ -8,9 +8,11 @@
   </ul>
 </li>
 <li class="has-dropdown">
-  <%= link_to 'Merchandise', admin_merchants_path %>
+  <%= link_to 'Merchandise', admin_merchandise_products_path %>
   <ul class="dropdown">
-    <li><%= link_to 'Merchants', admin_merchants_path %></li>
+    <% if current_user.super_admin? %>
+      <li><%= link_to 'Merchants', admin_merchants_path %></li>
+    <% end %>
     <li><%= link_to 'Products', admin_merchandise_products_path %></li>
     <li><%= link_to 'Properties', admin_merchandise_properties_path %></li>
     <li><%= link_to 'Product Types', admin_merchandise_product_types_path %></li>

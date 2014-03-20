@@ -97,30 +97,31 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
 
   private
 
-    def allowed_params
-      params.require(:product).permit(:name, :description, :product_keywords, :set_keywords, :product_type_id,
-                                      :prototype_id, :shipping_category_id, :permalink, :available_at, :deleted_at,
-                                      :meta_keywords, :meta_description, :featured, :description_markup, :brand_id,
-                                      product_properties_attributes: [:id, :product_id, :property_id, :position, :description])
-    end
+  def allowed_params
+    permitted = params.require(:product).permit(:name, :description, :product_keywords, :set_keywords, :product_type_id,
+                                    :prototype_id, :shipping_category_id, :permalink, :available_at, :deleted_at,
+                                    :meta_keywords, :meta_description, :featured, :description_markup, :brand_id,
+                                    product_properties_attributes: [:id, :product_id, :property_id, :position, :description])
+    permitted.merge(merchant_id: current_user.merchant_id)
+  end
 
-    def form_info
-      @prototypes               = Prototype.all.collect{|pt| [pt.name, pt.id]}
-      @all_properties           = Property.all
-      @select_shipping_category = ShippingCategory.all.collect {|sc| [sc.name, sc.id]}
-      @brands        = Brand.order(:name).collect {|ts| [ts.name, ts.id]}
-    end
+  def form_info
+    @prototypes               = Prototype.of(current_user).all.collect{|pt| [pt.name, pt.id]}
+    @all_properties           = Property.of(current_user).all
+    @select_shipping_category = ShippingCategory.of(current_user).all.collect {|sc| [sc.name, sc.id]}
+    @brands                   = Brand.of(current_user).order(:name).collect {|ts| [ts.name, ts.id]}
+  end
 
-    def product_types
-      @product_types ||= ProductType.all
-    end
+  def product_types
+    @product_types ||= ProductType.all
+  end
 
-      def sort_column
-        Product.column_names.include?(params[:sort]) ? params[:sort] : "name"
-      end
+  def sort_column
+    Product.column_names.include?(params[:sort]) ? params[:sort] : "name"
+  end
 
-      def sort_direction
-        %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
-      end
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
 
 end

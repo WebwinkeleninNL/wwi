@@ -11,8 +11,8 @@ class AdminAbility
     if user.super_admin?
       can :manage, :all
     elsif user.admin?
-      #can :manage, :all
-      can :read, :all
+      can :manage, :all, merchant_id: user.merchant_id
+
       can :view_users, User do
         user.admin?
       end

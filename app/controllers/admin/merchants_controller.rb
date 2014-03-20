@@ -1,5 +1,6 @@
 class Admin::MerchantsController < Admin::BaseController
   layout "admin"
+  before_filter :verify_super_admin
 
   def index
     @merchants = Merchant.all.paginate page: params[:page]
@@ -17,15 +18,14 @@ class Admin::MerchantsController < Admin::BaseController
       flash[:notice] = "Merchant has been created."
       redirect_to admin_merchants_url
     else
-      form_info
       render :action => :new
     end
   end
 
   def edit
-    @merchant = Merchant.includes(:roles).find(params[:id])
+    @merchant = Merchant.find(params[:id])
     authorize! :create_merchants, current_user
-    form_info
+
   end
 
   def update
@@ -34,9 +34,8 @@ class Admin::MerchantsController < Admin::BaseController
 
     if @merchant.update_attributes(merchant_params)
       flash[:notice] = "#{@merchant.name} has been updated."
-      redirect_to admin_users_url
+      redirect_to admin_merchants_url
     else
-      form_info
       render :action => :edit
     end
   end
