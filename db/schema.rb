@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140320001011) do
+ActiveRecord::Schema.define(version: 20140320002755) do
 
   create_table "accounting_adjustments", force: true do |t|
     t.integer  "adjustable_id",                           null: false
@@ -343,11 +343,13 @@ ActiveRecord::Schema.define(version: 20140320001011) do
     t.boolean "active",    default: true
     t.integer "rgt"
     t.integer "lft"
+    t.integer "user_id"
   end
 
   add_index "product_types", ["lft"], name: "index_product_types_on_lft"
   add_index "product_types", ["parent_id"], name: "index_product_types_on_parent_id"
   add_index "product_types", ["rgt"], name: "index_product_types_on_rgt"
+  add_index "product_types", ["user_id"], name: "index_product_types_on_user_id"
 
   create_table "products", force: true do |t|
     t.string   "name",                                 null: false
@@ -382,7 +384,10 @@ ActiveRecord::Schema.define(version: 20140320001011) do
     t.string  "identifing_name",                null: false
     t.string  "display_name"
     t.boolean "active",          default: true
+    t.integer "user_id"
   end
+
+  add_index "properties", ["user_id"], name: "index_properties_on_user_id"
 
   create_table "prototype_properties", force: true do |t|
     t.integer "prototype_id", null: false
