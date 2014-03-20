@@ -54,10 +54,11 @@ class Admin::UsersController < Admin::BaseController
   private
 
   def user_params
-    params.require(:user).permit(:password, :password_confirmation, :first_name, :last_name, :email, :state, :role_ids => [])
+    params.require(:user).permit(:merchant_id, :password, :password_confirmation, :first_name, :last_name, :email, :state, :role_ids => [])
   end
 
   def form_info
+    @merchants = Merchant.all.map { |m| [m.name, m.id] }
     @all_roles = Role.all
     @states    = ['inactive', 'active', 'canceled']
   end

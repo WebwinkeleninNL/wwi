@@ -23,6 +23,7 @@
 #
 
 class Invoice < ActiveRecord::Base
+  include MerchantScope
 
   has_many :payments
   has_many :batches, :as => :batchable#, :polymorphic => true

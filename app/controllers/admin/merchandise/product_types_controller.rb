@@ -17,7 +17,7 @@ class Admin::Merchandise::ProductTypesController < Admin::BaseController
   end
 
   def create
-    @product_type = ProductType.new(allowed_params.merge(user_id: current_user.id))
+    @product_type = ProductType.new(allowed_params)
 
     if @product_type.save
       redirect_to :action => :index
@@ -55,7 +55,7 @@ class Admin::Merchandise::ProductTypesController < Admin::BaseController
   private
 
   def allowed_params
-    params.require(:product_type).permit( :name, :parent_id )
+    params.require(:product_type).permit( :name, :parent_id ).merge(merchant_id: current_user.merchant_id)
   end
 
   def form_info

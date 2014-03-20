@@ -1,0 +1,8 @@
+<h3>Edit <%= @merchant.name %> </h3>
+
+<%= link_to "Show #{@merchant.name}", admin_merchant_path(@merchant), class: 'tiny success button' %>
+
+<%= form_for @merchant, :url => admin_merchant_path(@merchant)  do |form| %>
+  <%= render :partial => '/admin/merchants/form', :locals => {:form => form} %>
+  <%= form.submit "Update", :class => 'button' %>
+<% end %>

@@ -11,7 +11,7 @@ class Admin::Merchandise::PropertiesController < Admin::BaseController
   end
 
   def create
-    @property = Property.new(allowed_params.merge(user_id: current_user.id))
+    @property = Property.new(allowed_params)
     if @property.save
       redirect_to :action => :index
     else
@@ -44,7 +44,7 @@ class Admin::Merchandise::PropertiesController < Admin::BaseController
   private
 
   def allowed_params
-    params.require(:property).permit(:identifing_name, :display_name, :active)
+    params.require(:property).permit(:identifing_name, :display_name, :active).merge(merchant_id: current_user.merchant_id)
   end
 
   def sort_column

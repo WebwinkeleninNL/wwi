@@ -22,7 +22,12 @@
 </fieldset>
 
 <% if current_user.super_admin? %>
+  <fieldset id="admin-merchant" class='span-12'>
+    <legend>Mechant</legend>
+    <%= form.select :merchant_id, @merchants, { include_blank: true } %>
+  </fieldset>
   <fieldset id="admin-password" class='span-12'>
+    <legend>Security</legend>
     <p>Leave blank if you don't want to change the password.</p>
     <ul>
       <li>

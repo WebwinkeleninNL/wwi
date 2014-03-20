@@ -29,6 +29,8 @@ class Product < ActiveRecord::Base
   friendly_id :permalink, use: :finders
   include Presentation::ProductPresenter
   include ProductFilters
+  include MerchantScope
+
   #include ProductSolr # If you want to use SOLR search uncomment
 
   serialize :product_keywords, Array
@@ -71,8 +73,6 @@ class Product < ActiveRecord::Base
   validates :permalink,             uniqueness: true,      length: { maximum: 150 }
 
   validate  :ensure_available
-
-  scope :of, ->(user){ where(user_id: user.id)}
 
   def hero_variant
     active_variants.detect{|v| v.master } || active_variants.first

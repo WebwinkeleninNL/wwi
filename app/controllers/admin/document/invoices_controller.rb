@@ -3,7 +3,7 @@ class Admin::Document::InvoicesController < Admin::BaseController
   include InvoicePrinter
 
   def index
-    @invoices = Invoice.includes([:order]).admin_grid(params).order(sort_column + " " + sort_direction).
+    @invoices = Invoice.of(current_user).includes([:order]).admin_grid(params).order(sort_column + " " + sort_direction).
                         paginate(:page => pagination_page, :per_page => pagination_rows)
   end
 

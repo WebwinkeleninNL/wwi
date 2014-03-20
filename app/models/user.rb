@@ -27,6 +27,8 @@
 #  comments_count    :integer(4)      default(0)
 #  created_at        :datetime
 #  updated_at        :datetime
+#  merchant_id       :integer
+#
 #
 
 class User < ActiveRecord::Base
@@ -53,6 +55,7 @@ class User < ActiveRecord::Base
   after_create  :set_referral_registered_at
 
   belongs_to :account
+  belongs_to :merchant
 
   has_many :products
 

@@ -1,4 +1,5 @@
 class Prototype < ActiveRecord::Base
+  include MerchantScope
 
   has_many :products
   has_many :prototype_properties

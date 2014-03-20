@@ -34,6 +34,9 @@
       <th><%= sortable "last_name" %></th>
       <th><%= sortable "email" %></th>
       <th>Status</th>
+      <% if current_user.super_admin? %>
+        <th>Mechant</th>
+      <% end %>
     </tr>
     </thead>
     <% @users.each do |user| %>
@@ -42,6 +45,9 @@
         <td><%= user.last_name %></td>
         <td><%= user.email %></td>
         <td><%= user.state %></td>
+        <% if current_user.super_admin? %>
+          <td><%= user.merchant ? user.merchant.name : '' %></td>
+        <% end %>
       </tr>
     <% end %>
   </table>

@@ -1,0 +1,32 @@
+<h3>Merchants</h3>
+
+<% content_for :sidemenu do %>
+  <div style="text-align:right">
+    <%= link_to "New Merchant", new_admin_merchant_path, :class => "button", :id => "new_user_button" %>
+  </div>
+<% end %>
+
+
+<div class="admin_merchants">
+  <table>
+    <thead>
+    <tr class='odd'>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Url</th>
+      <th>Users</th>
+    </tr>
+    </thead>
+    <% @merchants.each do |merchant| %>
+      <tr class='<%= cycle("odd", "")%>'>
+        <td><%= link_to merchant.name, admin_merchant_path(merchant) %></td>
+        <td><%= merchant.description %></td>
+        <td><%= merchant.url %></td>
+        <td><%= merchant.users.count %></td>
+      </tr>
+    <% end %>
+  </table>
+
+  <%= will_paginate @merchants %>
+</div>
+

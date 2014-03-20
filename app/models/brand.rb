@@ -12,6 +12,7 @@
 #
 
 class Brand < ActiveRecord::Base
+  include MerchantScope
 
   has_many :variants
   has_many :products

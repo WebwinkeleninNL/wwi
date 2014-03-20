@@ -1,6 +1,7 @@
 # Image groups allow any variant to have "variant specific" images.  Thus a red shit would show as red an not green.
 
 class ImageGroup < ActiveRecord::Base
+  include MerchantScope
   #attr_accessible :name, :product_id, :images_attributes
 
   validates :name,        presence: true

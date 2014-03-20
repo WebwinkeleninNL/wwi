@@ -1,10 +1,10 @@
 class ProductType < ActiveRecord::Base
+  include MerchantScope
+
   acts_as_nested_set  #:order => "name"
   has_many :products, dependent: :restrict_with_exception
 
   validates :name,    presence: true, length: { :maximum => 255 }
-
-  scope :of, ->(user){ where(user_id: user.id)}
 
   FEATURED_TYPE_ID = 1
 

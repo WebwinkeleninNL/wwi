@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140320002755) do
+ActiveRecord::Schema.define(version: 20140320213331) do
 
   create_table "accounting_adjustments", force: true do |t|
     t.integer  "adjustable_id",                           null: false
@@ -214,12 +214,20 @@ ActiveRecord::Schema.define(version: 20140320002755) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.decimal  "credited_amount", precision: 8, scale: 2, default: 0.0
+    t.integer  "merchant_id"
   end
 
+  add_index "invoices", ["merchant_id"], name: "index_invoices_on_merchant_id"
   add_index "invoices", ["order_id"], name: "index_invoices_on_order_id"
 
   create_table "item_types", force: true do |t|
     t.string "name"
+  end
+
+  create_table "merchants", force: true do |t|
+    t.string "name"
+    t.string "url"
+    t.text   "description"
   end
 
   create_table "newsletters", force: true do |t|
@@ -263,11 +271,13 @@ ActiveRecord::Schema.define(version: 20140320002755) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.decimal  "credited_amount", precision: 8, scale: 2, default: 0.0
+    t.integer  "merchant_id"
   end
 
   add_index "orders", ["bill_address_id"], name: "index_orders_on_bill_address_id"
   add_index "orders", ["coupon_id"], name: "index_orders_on_coupon_id"
   add_index "orders", ["email"], name: "index_orders_on_email"
+  add_index "orders", ["merchant_id"], name: "index_orders_on_merchant_id"
   add_index "orders", ["number"], name: "index_orders_on_number"
   add_index "orders", ["ship_address_id"], name: "index_orders_on_ship_address_id"
   add_index "orders", ["user_id"], name: "index_orders_on_user_id"
@@ -338,18 +348,18 @@ ActiveRecord::Schema.define(version: 20140320002755) do
   add_index "product_properties", ["property_id"], name: "index_product_properties_on_property_id"
 
   create_table "product_types", force: true do |t|
-    t.string  "name",                     null: false
+    t.string  "name",                       null: false
     t.integer "parent_id"
-    t.boolean "active",    default: true
+    t.boolean "active",      default: true
     t.integer "rgt"
     t.integer "lft"
-    t.integer "user_id"
+    t.integer "merchant_id"
   end
 
   add_index "product_types", ["lft"], name: "index_product_types_on_lft"
+  add_index "product_types", ["merchant_id"], name: "index_product_types_on_merchant_id"
   add_index "product_types", ["parent_id"], name: "index_product_types_on_parent_id"
   add_index "product_types", ["rgt"], name: "index_product_types_on_rgt"
-  add_index "product_types", ["user_id"], name: "index_product_types_on_user_id"
 
   create_table "products", force: true do |t|
     t.string   "name",                                 null: false
@@ -368,26 +378,26 @@ ActiveRecord::Schema.define(version: 20140320002755) do
     t.datetime "updated_at"
     t.text     "description_markup"
     t.integer  "brand_id"
-    t.integer  "user_id"
+    t.integer  "merchant_id"
   end
 
   add_index "products", ["brand_id"], name: "index_products_on_brand_id"
   add_index "products", ["deleted_at"], name: "index_products_on_deleted_at"
+  add_index "products", ["merchant_id"], name: "index_products_on_merchant_id"
   add_index "products", ["name"], name: "index_products_on_name"
   add_index "products", ["permalink"], name: "index_products_on_permalink", unique: true
   add_index "products", ["product_type_id"], name: "index_products_on_product_type_id"
   add_index "products", ["prototype_id"], name: "index_products_on_prototype_id"
   add_index "products", ["shipping_category_id"], name: "index_products_on_shipping_category_id"
-  add_index "products", ["user_id"], name: "index_products_on_user_id"
 
   create_table "properties", force: true do |t|
     t.string  "identifing_name",                null: false
     t.string  "display_name"
     t.boolean "active",          default: true
-    t.integer "user_id"
+    t.integer "merchant_id"
   end
 
-  add_index "properties", ["user_id"], name: "index_properties_on_user_id"
+  add_index "properties", ["merchant_id"], name: "index_properties_on_merchant_id"
 
   create_table "prototype_properties", force: true do |t|
     t.integer "prototype_id", null: false
@@ -398,12 +408,12 @@ ActiveRecord::Schema.define(version: 20140320002755) do
   add_index "prototype_properties", ["prototype_id"], name: "index_prototype_properties_on_prototype_id"
 
   create_table "prototypes", force: true do |t|
-    t.string  "name",                   null: false
-    t.boolean "active",  default: true, null: false
-    t.integer "user_id"
+    t.string  "name",                       null: false
+    t.boolean "active",      default: true, null: false
+    t.integer "merchant_id"
   end
 
-  add_index "prototypes", ["user_id"], name: "index_prototypes_on_user_id"
+  add_index "prototypes", ["merchant_id"], name: "index_prototypes_on_merchant_id"
 
   create_table "purchase_order_variants", force: true do |t|
     t.integer  "purchase_order_id",                                         null: false
@@ -705,12 +715,14 @@ ActiveRecord::Schema.define(version: 20140320002755) do
     t.integer  "comments_count",    default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "merchant_id"
   end
 
   add_index "users", ["access_token"], name: "index_users_on_access_token", unique: true
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["first_name"], name: "index_users_on_first_name"
   add_index "users", ["last_name"], name: "index_users_on_last_name"
+  add_index "users", ["merchant_id"], name: "index_users_on_merchant_id"
   add_index "users", ["perishable_token"], name: "index_users_on_perishable_token", unique: true
   add_index "users", ["persistence_token"], name: "index_users_on_persistence_token", unique: true
 

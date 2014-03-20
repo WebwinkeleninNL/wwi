@@ -16,8 +16,7 @@ class Role < ActiveRecord::Base
             ADMIN,
             WAREHOUSE,
             REPORT,
-            CUSTOMER_SERVICE,
-            MERCHANT
+            CUSTOMER_SERVICE
           ].freeze
 
   NON_ADMIN_ROLES = [ WAREHOUSE,
@@ -30,6 +29,4 @@ class Role < ActiveRecord::Base
   WAREHOUSE_ID        = 3
   REPORT_ID           = 4
   CUSTOMER_SERVICE_ID = 5
-  MERCHANT_ID         = 6
-
 end

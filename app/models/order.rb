@@ -50,6 +50,7 @@ class Order < ActiveRecord::Base
   extend FriendlyId
   friendly_id :number
   include Presentation::OrderPresenter
+  include MerchantScope
 
   has_many   :order_items, :dependent => :destroy
   has_many   :shipments
