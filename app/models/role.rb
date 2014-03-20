@@ -1,7 +1,7 @@
 class Role < ActiveRecord::Base
 
-  has_many    :user_roles,                      :dependent => :destroy
-  has_many    :users,         :through => :user_roles
+  has_many    :user_roles, :dependent => :destroy
+  has_many    :users,      :through   => :user_roles
 
   validates :name, :presence => true, :length => { :maximum => 55 }
 
@@ -10,21 +10,26 @@ class Role < ActiveRecord::Base
   WAREHOUSE         = 'warehouse'
   REPORT            = 'report'
   CUSTOMER_SERVICE  = 'customer_service'
+  MERCHANT          = 'merchant'
 
   ROLES = [ SUPER_ADMIN,
             ADMIN,
             WAREHOUSE,
             REPORT,
-            CUSTOMER_SERVICE]
+            CUSTOMER_SERVICE,
+            MERCHANT
+          ].freeze
 
   NON_ADMIN_ROLES = [ WAREHOUSE,
                       REPORT,
-                      CUSTOMER_SERVICE]
+                      CUSTOMER_SERVICE
+                    ].freeze
 
   SUPER_ADMIN_ID      = 1
   ADMIN_ID            = 2
   WAREHOUSE_ID        = 3
   REPORT_ID           = 4
   CUSTOMER_SERVICE_ID = 5
+  MERCHANT_ID         = 6
 
 end

@@ -14,7 +14,7 @@ class Property < ActiveRecord::Base
   # active is default true at the DB level
 
   scope :visible, -> {where(active: true)}
-
+  scope :of, ->(user){ where(user_id: user.id)}
 
   def full_name
     "#{display_name}: (#{identifing_name})"

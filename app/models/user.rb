@@ -54,6 +54,8 @@ class User < ActiveRecord::Base
 
   belongs_to :account
 
+  has_many :products
+
   has_many    :users_newsletters
   has_many    :newsletters, through: :users_newsletters
 

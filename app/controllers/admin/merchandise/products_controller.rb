@@ -5,7 +5,7 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
 
   def index
     params[:page] ||= 1
-    @products = Product.admin_grid(params).order(sort_column + " " + sort_direction).
+    @products = Product.of(current_user).admin_grid(params).order(sort_column + " " + sort_direction).
                                               paginate(:page => pagination_page, :per_page => pagination_rows)
   end
 
@@ -26,7 +26,7 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
   end
 
   def create
-    @product = Product.new(allowed_params)
+    @product = Product.new(allowed_params.merge(user_id: current_user.id))
 
     if @product.save
       flash[:notice] = "Success, You should create a variant for the product."
@@ -41,7 +41,7 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
   end
 
   def edit
-    @product        = Product.includes(:properties,:product_properties, {:prototype => :properties}).find(params[:id])
+    @product = Product.includes(:properties,:product_properties, {:prototype => :properties}).find(params[:id])
     form_info
   end
 
@@ -81,6 +81,7 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
     if @product.save
       redirect_to admin_merchandise_product_url(@product)
     else
+      logger.info @product.errors.inspect
       flash[:alert] = "Please add a description before Activating."
       redirect_to edit_admin_merchandise_products_description_url(@product)
     end

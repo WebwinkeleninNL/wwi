@@ -2,7 +2,7 @@ class Admin::Merchandise::PropertiesController < Admin::BaseController
   helper_method :sort_column, :sort_direction
   respond_to :html, :json
   def index
-    @properties = Property.admin_grid(params).order(sort_column + " " + sort_direction).
+    @properties = Property.of(current_user).admin_grid(params).order(sort_column + " " + sort_direction).
                                               paginate(:page => pagination_page, :per_page => pagination_rows)
   end
 
@@ -11,7 +11,7 @@ class Admin::Merchandise::PropertiesController < Admin::BaseController
   end
 
   def create
-    @property = Property.new(allowed_params)
+    @property = Property.new(allowed_params.merge(user_id: current_user.id))
     if @property.save
       redirect_to :action => :index
     else

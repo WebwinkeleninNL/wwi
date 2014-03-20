@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131123212228) do
+ActiveRecord::Schema.define(version: 20140320001011) do
 
   create_table "accounting_adjustments", force: true do |t|
     t.integer  "adjustable_id",                           null: false
@@ -366,6 +366,7 @@ ActiveRecord::Schema.define(version: 20131123212228) do
     t.datetime "updated_at"
     t.text     "description_markup"
     t.integer  "brand_id"
+    t.integer  "user_id"
   end
 
   add_index "products", ["brand_id"], name: "index_products_on_brand_id"
@@ -375,6 +376,7 @@ ActiveRecord::Schema.define(version: 20131123212228) do
   add_index "products", ["product_type_id"], name: "index_products_on_product_type_id"
   add_index "products", ["prototype_id"], name: "index_products_on_prototype_id"
   add_index "products", ["shipping_category_id"], name: "index_products_on_shipping_category_id"
+  add_index "products", ["user_id"], name: "index_products_on_user_id"
 
   create_table "properties", force: true do |t|
     t.string  "identifing_name",                null: false
@@ -391,9 +393,12 @@ ActiveRecord::Schema.define(version: 20131123212228) do
   add_index "prototype_properties", ["prototype_id"], name: "index_prototype_properties_on_prototype_id"
 
   create_table "prototypes", force: true do |t|
-    t.string  "name",                  null: false
-    t.boolean "active", default: true, null: false
+    t.string  "name",                   null: false
+    t.boolean "active",  default: true, null: false
+    t.integer "user_id"
   end
+
+  add_index "prototypes", ["user_id"], name: "index_prototypes_on_user_id"
 
   create_table "purchase_order_variants", force: true do |t|
     t.integer  "purchase_order_id",                                         null: false

@@ -1,13 +1,71 @@
-<% content_for :head do -%>
-  <%= stylesheet_link_tag 'home_page.css' %>
-<% end %>
-
-
-<div id='left_side_panel' class='span-6 last'>
-&nbsp;
+<div class="slideshow">
+<img alt="sfeer" src="/assets/frontend/sfeerfoto.jpg">
 </div>
 
-<div id='featured_item' class='span-18 last'>
-  <%= image_tag 'home.png' %>
+<div class="filterblock">
+
+<form method="get">
+
+<label for="city">Kies uw stad</label>
+<select class="styled">
+  <option>Hilversum</option>
+  <option>Utrecht</option>
+  <option>Rotterdam</option>
+</select>
+<div class="clearfix"></div>
+<label for="category">Categorie</label>
+<select class="styled">
+  <option>Schoenen</option>
+  <option>Tassen</option>
+  <option>Broeken</option>
+</select>
+<div class="clearfix"></div>
+<label for="gender">Geslacht</label>
+<select class="styled">
+  <option>Dames</option>
+  <option>Heren</option>
+  <option>Kinderen</option>
+</select>
+<div class="clearfix"></div>
+<label for="vendor">Merk</label>
+<select class="styled">
+  <option>Timberland</option>
+  <option>Tony Mora</option>
+  <option>Viavai</option>
+</select>
+<div class="clearfix"></div>
+<label for="price">Prijs</label>
+<div class="priceblock">
+<div class="noUiSlider"></div>
+<input id="min-euro" type="text">
+<input id="max-euro" type="text">
+</div>
+<div class="clearfix"></div>
+<label for="shop">Shop</label>
+<select class="styled">
+  <option>Elias Shoes</option>
+  <option>Minix Store</option>
+</select>
+<input class="submit" type="submit" value="Bekijk nu!" />
+</form>
+
 </div>
 
+<div class="clearfix"></div>
+<div class="promoblock">
+<ul>
+<li><a href="/"><img alt="promoblock1" src="/assets/frontend/promoblock1.jpg"></a><h2>Dames</h2></li>
+<li><a href="/"><img alt="promoblock2" src="/assets/frontend/promoblock2.jpg"></a><h2>Heren</h2></li>
+<li><a href="/"><img alt="promoblock3" src="/assets/frontend/promoblock3.jpg"></a><h2>Kinderen</h2></li>
+<li><a href="/"><img alt="promoblock4" src="/assets/frontend/promoblock4.jpg"></a><h2>Accessoires</h2></li>
+<li><a href="/"><img alt="promoblock5" src="/assets/frontend/promoblock5.jpg"></a></li>
+</ul>
+</div>
+<div class="clearfix">&nbsp;</div>
+<div class="promoblock">
+<ul>
+<li><a href="/"><img width="340" alt="promoblock6" src="/assets/frontend/promoblock6.jpg"></a></li>
+<li><a href="/"><img width="340" alt="promoblock7" src="/assets/frontend/promoblock7.jpg"></a></li>
+<li><a href="/"><img width="340" alt="promoblock8" src="/assets/frontend/promoblock8.jpg"></a></li>
+</ul>
+</div>

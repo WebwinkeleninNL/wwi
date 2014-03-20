@@ -62,6 +62,7 @@ group :production do
 end
 
 group :development do
+  gem 'quiet_assets'
   gem 'sqlite3'
   gem 'railroady'
   #gem 'awesome_print'
@@ -83,8 +84,6 @@ group :test, :development do
 end
 
 group :test do
-  gem 'factory_girl', "~> 3.3.0"
-  gem 'factory_girl_rails', "~> 3.3.0"
   gem 'mocha', '~> 0.13.3', :require => false
   gem 'rspec-rails-mocha'
   gem 'rspec-rails', '~> 2.12.2'
@@ -92,7 +91,29 @@ group :test do
   gem 'email_spec'
   gem "faker"
 
+  gem "factory_girl_rails", "~> 4.0"
+  gem "zeus"
+  gem 'guard'
+  gem 'guard-cucumber'
+  gem 'guard-rspec'
+  gem 'guard-bundler'
+
+  gem 'cucumber-rails', require: false
+  gem 'shoulda-matchers'
+
+  gem 'webmock'
+  gem 'delorean'
+
+  gem 'simplecov', require: false
+
+  gem 'rubocop'
+  gem 'guard-rubocop'
+  gem 'rspec-expectations'
 end
 
+
+# My stuff
+
 gem 'capistrano', '~> 3.1.0'
+gem 'kaminari'
 

@@ -1,5 +1,6 @@
 FactoryGirl.define do
   factory :product do
+    user                 {|c| c.association(:user) }
     sequence(:name)      { |i| "Product Name #{i}" }
     description          'Describe Product'
     description_markup   'Describe Product'

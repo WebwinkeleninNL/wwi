@@ -1,20 +1,21 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=1100" />
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/jquery.nouislider.css">
-<title>Webwinkelenin.nl</title>
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script type="text/javascript" src="js/jquery.customSelect.js"></script>
-<script type="text/javascript" src="js/jquery.nouislider.js"></script>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=1100" />
+  <title>Webwinkelenin.nl</title>
+  <%= stylesheet_link_tag "frontend/style", "jquery.nouislider" %>
+  <%= javascript_include_tag 'frontend' %>
 
-<script type="text/javascript">
-$(function(){
-  $('select.styled').customSelect();
-});
-</script>
+  <script type="text/javascript">
+  $(function(){
+    $('select.styled').customSelect();
+  });
+  </script>
+
+  <%= csrf_meta_tag %>
+
+  <%= yield :head %>
 </head>
 
 <body>
@@ -22,12 +23,12 @@ $(function(){
 <div class="header container">
 
 <div class="logo">
-<a href="/"><img title="Webwinkelenin" alt="Webwinkelenin" src="images/logo.png"></a>
+<a href="/"><img title="Webwinkelenin" alt="Webwinkelenin" src="/assets/frontend/logo.png"></a>
 </div>
 <div class="header-right">
 <div class="shoppingbag">
 <a href="/">
-<img class="cart" alt="cart" src="images/cart.png">
+<img class="cart" alt="cart" src="/assets/frontend/cart.png">
 </a>
 <a class="bag-items minicart" rel="nofollow" href="/">0 ITEMS, TOTAAL €0,00</a>
 </div>
@@ -40,9 +41,9 @@ $(function(){
 </select>
 </div>
 <ul class="topmenu">
-<li><img class="cart" alt="user" src="images/user.png"></li>
+<li><img class="cart" alt="user" src="/assets/frontend/user.png"></li>
 <li>
-<a href="/">Klant Login</a>
+<a href="/login">Klant Login</a>
 </li>
 <li>
 <a href="/">Aanmelden</a>
@@ -55,10 +56,10 @@ $(function(){
 <div class="container">
 <div class="mainmenu">
 <ul>
-<li class="home"><a href="/"><img alt="Home" src="images/home.png"></a></li>
+<li class="home"><a href="/"><img alt="Home" src="/assets/frontend/home.png"></a></li>
 <li><a href="/">Over ons</a></li>
-<li><a href="/overzicht.html">Productcategorie</a></li>
-<li><a href="/overzicht.html">Shop</a></li>
+<li><a href="/products">Productcategorie</a></li>
+<li><a href="/products">Shop</a></li>
 <li><a href="/">Storelocator</a></li>
 </ul>
 </div>
@@ -73,11 +74,21 @@ $(function(){
 <input type="hidden" value="all" name="posted_data[including]">
 <input type="text" placeholder="Zoeken..." name="posted_data[substring]" size="24">
 <a href="javascript:document.productsearchform.submit()">
-<img alt="Zoeken" src="images/search.png">
+<img alt="Zoeken" src="/assets/frontend/search.png">
 </a>
 </form>
 </div>
 
+  <% if notice || alert %>
+    <div class="row">
+      <% if notice || alert %>
+        <div class="flash_messages">
+          <%= raw "<div data-alert class='alert-box warning'> #{notice} <a href='' class='close'>&times;</a></div>"  if notice %>
+          <%= raw "<div data-alert class='alert-box alert'>#{alert} <a href='' class='close'>&times;</a></div>"     if alert %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 
 <div class="usp">
 Gratis Verzending vanaf &euro; 50!&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;Vóór 17 uur besteld morgen in huis&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;Gratis retourneren&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;Kies je afleverdatum
@@ -85,77 +96,8 @@ Gratis Verzending vanaf &euro; 50!&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;Vóór 17
 
 <div class="clearfix"></div>
 
-<div class="slideshow">
-<img alt="sfeer" src="images/sfeerfoto.jpg">
-</div>
+<%= yield %>
 
-<div class="filterblock">
-
-<form method="get">
-
-<label for="city">Kies uw stad</label>
-<select class="styled">
-  <option>Hilversum</option>
-  <option>Utrecht</option>
-  <option>Rotterdam</option>
-</select>
-<div class="clearfix"></div>
-<label for="category">Categorie</label>
-<select class="styled">
-  <option>Schoenen</option>
-  <option>Tassen</option>
-  <option>Broeken</option>
-</select>
-<div class="clearfix"></div>
-<label for="gender">Geslacht</label>
-<select class="styled">
-  <option>Dames</option>
-  <option>Heren</option>
-  <option>Kinderen</option>
-</select>
-<div class="clearfix"></div>
-<label for="vendor">Merk</label>
-<select class="styled">
-  <option>Timberland</option>
-  <option>Tony Mora</option>
-  <option>Viavai</option>
-</select>
-<div class="clearfix"></div>
-<label for="price">Prijs</label>
-<div class="priceblock">
-<div class="noUiSlider"></div>
-<input id="min-euro" type="text">
-<input id="max-euro" type="text">
-</div>
-<div class="clearfix"></div>
-<label for="shop">Shop</label>
-<select class="styled">
-  <option>Elias Shoes</option>
-  <option>Minix Store</option>
-</select>
-<input class="submit" type="submit" value="Bekijk nu!" />
-</form>
-
-</div>
-
-<div class="clearfix"></div>
-<div class="promoblock">
-<ul>
-<li><a href="/"><img alt="promoblock1" src="images/promoblock1.jpg"></a><h2>Dames</h2></li>
-<li><a href="/"><img alt="promoblock2" src="images/promoblock2.jpg"></a><h2>Heren</h2></li>
-<li><a href="/"><img alt="promoblock3" src="images/promoblock3.jpg"></a><h2>Kinderen</h2></li>
-<li><a href="/"><img alt="promoblock4" src="images/promoblock4.jpg"></a><h2>Accessoires</h2></li>
-<li><a href="/"><img alt="promoblock5" src="images/promoblock5.jpg"></a></li>
-</ul>
-</div>
-<div class="clearfix">&nbsp;</div>
-<div class="promoblock">
-<ul>
-<li><a href="/"><img width="340" alt="promoblock6" src="images/promoblock6.jpg"></a></li>
-<li><a href="/"><img width="340" alt="promoblock7" src="images/promoblock7.jpg"></a></li>
-<li><a href="/"><img width="340" alt="promoblock8" src="images/promoblock8.jpg"></a></li>
-</ul>
-</div>
 <div class="clearfix"></div>
 <div class="footer">
 
@@ -250,6 +192,9 @@ Gratis Verzending vanaf &euro; 50!&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;Vóór 17
 </div>
 
 </div>
+
+  <%# javascript_include_tag 'application' %>
+  <%= yield :bottom %>
 <script>
 function writeDollar ( ammount ) {
   ammount = ( 1.35 * parseFloat(ammount) );

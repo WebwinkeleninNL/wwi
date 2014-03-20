@@ -14,4 +14,8 @@ class WelcomeController < ApplicationController
       end
     end
   end
+
+  def overzicht
+    @featured_product
+  end
 end

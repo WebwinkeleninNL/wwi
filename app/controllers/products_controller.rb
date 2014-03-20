@@ -12,6 +12,8 @@ class ProductsController < ApplicationController
     else
       @products = products
     end
+
+    @products = @products.page params[:page]
   end
 
   def create

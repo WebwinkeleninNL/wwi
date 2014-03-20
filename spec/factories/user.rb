@@ -14,6 +14,13 @@ FactoryGirl.define do
     end
   end
 
+
+  factory :merchant, :parent => :user do
+    before(:create) do |u|
+      u.roles = [Role.find_by_name(Role::ADMIN), Role.find_by_name(Role::MERCHANT)]
+    end
+  end
+
   factory :super_admin_user, :parent => :user do
     #roles     {
     #  [Role.find_by_name(Role::SUPER_ADMIN)]

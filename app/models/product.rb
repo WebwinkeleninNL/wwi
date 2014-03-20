@@ -40,6 +40,8 @@ class Product < ActiveRecord::Base
   belongs_to :prototype
   belongs_to :shipping_category
 
+  belongs_to :user
+
   has_many :product_properties
   has_many :properties,         through: :product_properties
 
@@ -69,6 +71,8 @@ class Product < ActiveRecord::Base
   validates :permalink,             uniqueness: true,      length: { maximum: 150 }
 
   validate  :ensure_available
+
+  scope :of, ->(user){ where(user_id: user.id)}
 
   def hero_variant
     active_variants.detect{|v| v.master } || active_variants.first

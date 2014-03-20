@@ -4,6 +4,8 @@ class ProductType < ActiveRecord::Base
 
   validates :name,    presence: true, length: { :maximum => 255 }
 
+  scope :of, ->(user){ where(user_id: user.id)}
+
   FEATURED_TYPE_ID = 1
 
   # paginated results from the admin ProductType grid
