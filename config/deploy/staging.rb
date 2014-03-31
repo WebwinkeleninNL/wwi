@@ -13,4 +13,4 @@ server "stage.webwinkelenin.nl", roles: [:web, :app, :db], user: :deploy, :prima
 
 # # # Default deploy_to directory is /var/www/my_app
 set :deploy_to, '/mnt/application/stage-webwinkelenin'
-#set :unicorn_pid, "#{fetch(:deploy_to)}/shared/tmp/pids/unicorn.pid"
+set :unicorn_pid, "#{fetch(:deploy_to)}/shared/tmp/pids/unicorn.pid"
