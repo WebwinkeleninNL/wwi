@@ -73,6 +73,12 @@ group :development do
   gem 'debugger'#, '~> 1.6.1'
   gem "rails-erd"
 
+  gem 'capistrano', '~> 3.1.0'
+  gem 'capistrano-rails'
+  gem 'capistrano-rvm'
+  gem 'capistrano3-unicorn'
+  gem 'capistrano-bundler'
+
   # YARD AND REDCLOTH are for generating yardocs
   gem 'yard'
   gem 'RedCloth'
@@ -114,6 +120,5 @@ end
 
 # My stuff
 
-gem 'capistrano', '~> 3.1.0'
 gem 'kaminari'
 

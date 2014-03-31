@@ -8,25 +8,6 @@
 
 
 <div class="admin_merchants">
-  <table>
-    <thead>
-    <tr class='odd'>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Url</th>
-      <th>Users</th>
-    </tr>
-    </thead>
-    <% @merchants.each do |merchant| %>
-      <tr class='<%= cycle("odd", "")%>'>
-        <td><%= link_to merchant.name, admin_merchant_path(merchant) %></td>
-        <td><%= merchant.description %></td>
-        <td><%= merchant.url %></td>
-        <td><%= merchant.users.count %></td>
-      </tr>
-    <% end %>
-  </table>
-
-  <%= will_paginate @merchants %>
+  <%= render 'merchants' %>
 </div>
 

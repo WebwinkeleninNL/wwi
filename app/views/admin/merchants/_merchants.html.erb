@@ -1,1 +1,22 @@
+<table>
+  <thead>
+  <tr class='odd'>
+    <th>Name</th>
+    <th>Url</th>
+    <th>Contact email</th>
+    <th>Contact phone</th>
+    <th>Users</th>
+  </tr>
+  </thead>
+  <% @merchants.each do |merchant| %>
+    <tr class='<%= cycle("odd", "")%>'>
+      <td><%= link_to merchant.name, edit_admin_merchant_path(merchant) %></td>
+      <td><%= merchant.url %></td>
+      <td><%= merchant.email %></td>
+      <td><%= merchant.phone %></td>
+      <td><b><%= merchant.users.count %></b>&nbsp;<%= link_to '(See all)', admin_users_path(merchant_id: merchant.id) %></td>
+    </tr>
+  <% end %>
+</table>
+
 <%= will_paginate @merchants %>

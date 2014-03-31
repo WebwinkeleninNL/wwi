@@ -43,6 +43,6 @@ class Admin::MerchantsController < Admin::BaseController
   private
 
   def merchant_params
-    params.require(:merchant).permit(:name, :description, :url)
+    params.require(:merchant).permit(:name, :description, :url, :email, :phone)
   end
 end

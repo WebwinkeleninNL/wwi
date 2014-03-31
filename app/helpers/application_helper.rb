@@ -30,7 +30,7 @@ EXAMPLE USAGE!!
   def add_child_link(name, association)
     link_to(name, "javascript:void(0);", :class => "add_child", :"data-association" => association)
   end
-  
+
   def add_child_button(name, association)
     link_to(name, "javascript:void(0);", :class => "add_child button", :"data-association" => association)
   end
@@ -45,6 +45,14 @@ EXAMPLE USAGE!!
       form_builder.fields_for(association, options[:object], :child_index => "new_#{association}") do |f|
         raw( render(:partial => options[:partial], :locals => {options[:form_builder_local] => f }.merge(options[:locals])) )
       end
+    end
+  end
+
+  def yield_or_warn(collection, options)
+    return options[:on_empty] if collection.empty?
+
+    collection.each do |product|
+      yield product
     end
   end
 end

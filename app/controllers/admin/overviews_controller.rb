@@ -3,30 +3,35 @@ class Admin::OverviewsController < ApplicationController
   layout "admin"
 
   def index
-    #  The index action should
-    if u = User.first
-      redirect_to root_url and return if !current_user
-      redirect_to root_url unless current_user.admin?
+    @products = Product.of(current_user).limit(5)
+    @orders   = Order.of(current_user).limit(5)
 
-    elsif Role.first
-      ##  This means we don't have any users
-      ##  First we need to create a user with all permissions
+    # #  The index action should
+    # if u = User.first
+    #   redirect_to root_url and return if !current_user
+    #   redirect_to root_url unless current_user.admin?
 
 
-      @user = User.new(args)
-      if @user.active? || @user.activate!
-        @user.save
-        @user.role_ids = Role.all.map{|r| r.id }
-        @user.save
-        @current_user = @user
-        @user_session = UserSession.new(session_args)
-        @user_session.save
-      end
-    else
-      ###  If you dont have roles you need to run rake db:seed
-      @no_roles = true
-    end
+
+    # elsif Role.first
+    #   ##  This means we don't have any users
+    #   ##  First we need to create a user with all permissions
+
+    #   @user = User.new(args)
+    #   if @user.active? || @user.activate!
+    #     @user.save
+    #     @user.role_ids = Role.all.map{|r| r.id }
+    #     @user.save
+    #     @current_user = @user
+    #     @user_session = UserSession.new(session_args)
+    #     @user_session.save
+    #   end
+    # else
+    #   ###  If you dont have roles you need to run rake db:seed
+    #   @no_roles = true
+    # end
   end
+
   private
   def session_args
     @session_args ||= { :email => @user.email, :password => @password }

@@ -3,7 +3,11 @@ class Admin::UsersController < Admin::BaseController
 
   def index
     authorize! :view_users, current_user
-    @users = User.of(current_user).admin_grid(params).order(sort_column + " " + sort_direction).
+    @users = User.of(current_user)
+
+    @users = @users.where(merchant_id: params[:merchant_id]) if current_user.super_admin? && params[:merchant_id]
+
+    @users = @users.admin_grid(params).order(sort_column + " " + sort_direction).
                                     paginate(:page => pagination_page, :per_page => pagination_rows)
   end
 

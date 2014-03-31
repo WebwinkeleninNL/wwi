@@ -78,6 +78,7 @@ Hadean::Application.routes.draw do
       end
     end
     resources :users
+
     resources :merchants
 
     namespace :user_datas do

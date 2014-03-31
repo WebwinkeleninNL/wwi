@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140320232902) do
+ActiveRecord::Schema.define(version: 20140322123952) do
 
   create_table "accounting_adjustments", force: true do |t|
     t.integer  "adjustable_id",                           null: false
@@ -78,8 +78,11 @@ ActiveRecord::Schema.define(version: 20140320232902) do
   add_index "batches", ["batchable_type"], name: "index_batches_on_batchable_type"
 
   create_table "brands", force: true do |t|
-    t.string "name"
+    t.string  "name"
+    t.integer "merchant_id"
   end
+
+  add_index "brands", ["merchant_id"], name: "index_brands_on_merchant_id"
 
   create_table "cart_items", force: true do |t|
     t.integer  "user_id"
@@ -228,6 +231,8 @@ ActiveRecord::Schema.define(version: 20140320232902) do
     t.string "name"
     t.string "url"
     t.text   "description"
+    t.string "email"
+    t.string "phone"
   end
 
   create_table "newsletters", force: true do |t|

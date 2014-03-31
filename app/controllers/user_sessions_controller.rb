@@ -14,7 +14,7 @@ class UserSessionsController < ApplicationController
       set_user_to_cart_items
       flash[:notice] = I18n.t('login_successful')
       if @user_session.record.admin?
-        redirect_back_or_default admin_users_url
+        redirect_back_or_default admin_url
       else
         redirect_back_or_default root_url
       end
