@@ -11,7 +11,7 @@ preload_app true
 timeout 30
 
 # Listen on a Unix data socket
-listen rails_root + '/tmp/pids/unicorn.sock', backlog: 2048
+listen rails_root + '/tmp/sockets/unicorn.sock', backlog: 2048
 
 pid rails_root + '/tmp/pids/unicorn.pid'
 
