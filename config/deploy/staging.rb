@@ -1,7 +1,7 @@
 
 set :stage, :staging
-# set :rails_env, :staging
-# set :unicorn_rack_env, :staging
+set :rails_env, :staging
+set :unicorn_rack_env, :staging
 
 set :application, 'stage.webwinkelenin.nl'
 
