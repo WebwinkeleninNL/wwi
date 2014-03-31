@@ -16,7 +16,6 @@ gem "american_date"
 gem 'authlogic', github: 'binarylogic/authlogic', ref: 'e4b2990d6282f3f7b50249b4f639631aef68b939'
 #gem 'authlogic',          "~> 3.3.0"
 
-gem "asset_sync"
 gem 'awesome_nested_set', '~> 3.0.0.rc.1'
 
 gem 'aws-sdk'
