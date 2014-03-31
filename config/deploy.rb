@@ -40,6 +40,25 @@ after 'deploy:publishing', 'deploy:restart'
 
 namespace :deploy do
 
+  desc 'Start application'
+  task :start do
+    #on roles(:app), in: :sequence, wait: 5 do
+      # Your restart mechanism here, for example:
+      # execute :touch, release_path.join('tmp/restart.txt')
+      invoke 'unicorn:start'
+    #end
+  end
+
+  desc 'Stop application'
+  task :stop do
+    #on roles(:app), in: :sequence, wait: 5 do
+      # Your restart mechanism here, for example:
+      # execute :touch, release_path.join('tmp/restart.txt')
+      invoke 'unicorn:stop'
+    #end
+  end
+
+
   desc 'Restart application'
   task :restart do
     #on roles(:app), in: :sequence, wait: 5 do
