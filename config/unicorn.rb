@@ -1,5 +1,5 @@
 workers_amount = 3
-rails_root = File.expand_path( File.dirname(__FILE__) + "/..")
+rails_root = '/mnt/application/stage-webwinkelenin' #File.expand_path( File.dirname(__FILE__) + "/..")
 
 worker_processes ( workers_amount.zero? ? 8 : workers_amount )
 
