@@ -26,24 +26,27 @@ set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public
 # # Default value for default_env is {}
 # # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 
-# #set :unicorn_config_path, 'config/unicorn.rb'
+set :unicorn_config_path, 'config/unicorn.rb'
 
-# #set :unicorn_pid, "#{fetch(:deploy_to)}/shared/tmp/pids/unicorn.pid"
+set :unicorn_pid, "#{fetch(:deploy_to)}/shared/tmp/pids/unicorn.pid"
 
 # Default value for keep_releases is 5
 set :keep_releases, 20
 
 set :ssh_options, forward_agent: true
 
+
+after 'deploy:publishing', 'deploy:restart'
+
 namespace :deploy do
 
   desc 'Restart application'
   task :restart do
-    on roles(:app), in: :sequence, wait: 5 do
+    #on roles(:app), in: :sequence, wait: 5 do
       # Your restart mechanism here, for example:
       # execute :touch, release_path.join('tmp/restart.txt')
-      invoke 'unicorn:reload'
-    end
+      invoke 'unicorn:restart'
+    #end
   end
 
   after :publishing, :restart

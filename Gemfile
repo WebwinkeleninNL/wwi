@@ -46,6 +46,9 @@ gem 'rmagick',    :require => 'RMagick'
 
 gem 'rake', '~> 10.1'
 
+# Use unicorn as the app server
+gem 'unicorn', require: false
+
 # gem 'resque', require: 'resque/server'
 
 gem 'state_machine', '~> 1.2.0'
