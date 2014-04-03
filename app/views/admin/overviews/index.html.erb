@@ -15,18 +15,34 @@
       <td>
         <h3>Recent products</h3>
         <p>
-          <%= yield_or_warn @products, on_empty: "You don't have any products." do |product| %>
-            <%= product.name %>
+          <% if @products %>
+          <table>
+            <% @products.each do |product| %>
+              <tr>
+                <td><%= link_to product.name,  admin_merchandise_multi_product_path(product.id) %></td>
+                <td><%= product.created_at.to_formatted_s(:short) %></td>
+              </tr>
+            <% end %>
+          <% else %>
+           <tr><td>You don't have any products.</td></tr>
           <% end %>
+          </table>
         </p>
       </td>
       <td>
         <h3>Orders</h3>
-        <p>
-          <%= yield_or_warn @orders, on_empty: "You don't have any orders." do |product| %>
-            <%= order.id %>
+        <table>
+          <% if @orders %>
+            <tr>
+              <% @orders.each do |order| %>
+                <td><%= order.name %></td>
+                <td><%= order.created_at.to_formatted_s(:short) %></td>
+              <% end %>
+            </tr>
+          <% else %>
+           <tr><td>You don't have any orders.</td></tr>
           <% end %>
-        </p>
+        </table>
       </td>
       <td>
         <h3>Reports</h3>
@@ -35,10 +51,13 @@
     </tr>
     <tr>
       <td>
-        <h3>Company's profile</h3>
+
         <% if current_user.merchant_id.nil? %>
-          <p>You are not an merchant.</p>
+          <h3>Merchants</h3>
+          <%= render 'admin/merchants/merchants' %>
+          <%= link_to 'see all', admin_merchants_path %>
         <% else %>
+          <h3>Company's profile</h3>
           Name: <%= current_user.merchant.name %><br/>
           Url:  <%= current_user.merchant.url %><br/>
           Contact email: <%= current_user.merchant.email %><br/>

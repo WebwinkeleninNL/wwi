@@ -1,10 +1,11 @@
-class Admin::OverviewsController < ApplicationController
+class Admin::OverviewsController < Admin::BaseController
   helper_method :recent_admin_users
   layout "admin"
 
   def index
     @products = Product.of(current_user).limit(5)
     @orders   = Order.of(current_user).limit(5)
+    @merchants = Merchant.all.limit(10)
 
     # #  The index action should
     # if u = User.first

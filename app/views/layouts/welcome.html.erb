@@ -9,7 +9,57 @@
 
   <script type="text/javascript">
   $(function(){
+
     $('select.styled').customSelect();
+    $('.slide-up-tabs li span a').bind('click', function(e){
+      e.preventDefault();
+
+      $(this).parents('li').find('> ul').slideToggle();
+      $(this).parents('li').toggleClass('open');
+
+    });
+
+    $('.quantity .minus').bind('click', function(e){
+      e.preventDefault();
+
+      var qty = $('input[name="quantity"]');
+      var old = parseInt(qty.val());
+
+      if(old > 1){
+        qty.val(old - 1);
+      }
+
+      return false;
+    });
+    $('.quantity .plus').bind('click', function(e){
+      e.preventDefault();
+
+      var qty = $('input[name="quantity"]');
+      var old = parseInt(qty.val());
+
+      qty.val(old + 1);
+
+      return false;
+    });
+
+    // Setting up busket items
+    $('.shoppingbag a span.items').html($.cookies('shoppingbag'));
+
+    $('[name="shoppingBag"]').bind('click', function(e){
+      e.preventDefault();
+
+      var qty = parseInt($('input[name="quantity"]').val());
+      var shoppingbag = $('.shoppingbag a span.items');
+      var items = parseInt(shoppingbag.html());
+      var total = items + qty;
+
+      shoppingbag.html(total);
+
+      // save to cookies
+      $.cookies('shoppingbag', total);
+
+      return false;
+    })
   });
   </script>
 
@@ -27,10 +77,10 @@
 </div>
 <div class="header-right">
 <div class="shoppingbag">
-<a href="/">
-<img class="cart" alt="cart" src="/assets/frontend/cart.png">
-</a>
-<a class="bag-items minicart" rel="nofollow" href="/">0 ITEMS, TOTAAL €0,00</a>
+  <a href="/">
+  <img class="cart" alt="cart" src="/assets/frontend/cart.png">
+  </a>
+  <a class="bag-items minicart" rel="nofollow" href="/"><span class='items'>0</span> ITEMS, TOTAAL €0,00</a>
 </div>
 </div>
 <div class="language">

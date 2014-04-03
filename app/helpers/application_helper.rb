@@ -47,12 +47,4 @@ EXAMPLE USAGE!!
       end
     end
   end
-
-  def yield_or_warn(collection, options)
-    return options[:on_empty] if collection.empty?
-
-    collection.each do |product|
-      yield product
-    end
-  end
 end
