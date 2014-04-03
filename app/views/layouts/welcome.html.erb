@@ -43,7 +43,7 @@
     });
 
     // Setting up busket items
-    $('.shoppingbag a span.items').html($.cookies('shoppingbag'));
+    $('.shoppingbag a span.items').html($.cookie('shoppingbag'));
 
     $('[name="shoppingBag"]').bind('click', function(e){
       e.preventDefault();
@@ -55,8 +55,8 @@
 
       shoppingbag.html(total);
 
-      // save to cookies
-      $.cookies('shoppingbag', total);
+      // save to cookie
+      $.cookie('shoppingbag', total);
 
       return false;
     })
@@ -80,7 +80,7 @@
   <a href="/">
   <img class="cart" alt="cart" src="/assets/frontend/cart.png">
   </a>
-  <a class="bag-items minicart" rel="nofollow" href="/"><span class='items'>0</span> ITEMS, TOTAAL €0,00</a>
+  <a class="bag-items minicart" rel="nofollow" href="/"><span class='items'>0</span> ITEMS, TOTAAL €<span>0,00</span></a>
 </div>
 </div>
 <div class="language">
