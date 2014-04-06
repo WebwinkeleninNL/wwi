@@ -11,9 +11,9 @@ preload_app true
 timeout 30
 
 # Listen on a Unix data socket
-listen rails_root + '/tmp/sockets/unicorn.sock', backlog: 2048
+listen rails_root + 'tmp/sockets/unicorn.sock', backlog: 2048
 
-pid rails_root + '/tmp/pids/unicorn.pid'
+pid rails_root + 'tmp/pids/unicorn.pid'
 
 stderr_path rails_root + '/log/unicorn.stderr.log'
 stdout_path rails_root + '/log/unicorn.stdout.log'
@@ -30,7 +30,7 @@ before_fork do |server, worker|
   #
   # Using this method we get 0 downtime deploys.
 
-  old_pid = rails_root + '/tmp/pids/unicorn.pid.oldbin'
+  old_pid = rails_root + 'tmp/pids/unicorn.pid.oldbin'
   if File.exists?(old_pid) && server.pid != old_pid
     begin
       Process.kill("QUIT", File.read(old_pid).to_i)
