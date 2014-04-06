@@ -73,12 +73,14 @@
 <div class="header container">
 
 <div class="logo">
-<a href="/"><img title="Webwinkelenin" alt="Webwinkelenin" src="/assets/frontend/logo.png"></a>
+  <a href="/">
+    <%= image_tag 'frontend/logo.png', title: "Webwinkelenin", alt: "Webwinkelenin" %>
+  </a>
 </div>
 <div class="header-right">
 <div class="shoppingbag">
   <a href="/">
-  <img class="cart" alt="cart" src="/assets/frontend/cart.png">
+    <%= image_tag "frontend/cart.png", class: "cart", alt: "cart" %>
   </a>
   <a class="bag-items minicart" rel="nofollow" href="/"><span class='items'>0</span> ITEMS, TOTAAL €<span>0,00</span></a>
 </div>
@@ -91,7 +93,9 @@
 </select>
 </div>
 <ul class="topmenu">
-<li><img class="cart" alt="user" src="/assets/frontend/user.png"></li>
+  <li>
+    <%= image_tag "frontend/user.png", class: "cart", alt: "user" %>
+  </li>
 <li>
 <a href="/login">Klant Login</a>
 </li>
@@ -106,7 +110,7 @@
 <div class="container">
 <div class="mainmenu">
 <ul>
-<li class="home"><a href="/"><img alt="Home" src="/assets/frontend/home.png"></a></li>
+<li class="home"><a href="/"><%= image_tag "frontend/home.png", alt: "Home" %></a></li>
 <li><a href="/">Over ons</a></li>
 <li><a href="/products">Productcategorie</a></li>
 <li><a href="/products">Shop</a></li>
@@ -124,7 +128,7 @@
 <input type="hidden" value="all" name="posted_data[including]">
 <input type="text" placeholder="Zoeken..." name="posted_data[substring]" size="24">
 <a href="javascript:document.productsearchform.submit()">
-<img alt="Zoeken" src="/assets/frontend/search.png">
+  <%= image_tag "frontend/search.png", alt: "Zoeken"  %>
 </a>
 </form>
 </div>
