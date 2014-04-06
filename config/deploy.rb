@@ -28,13 +28,10 @@ set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public
 
 set :unicorn_config_path, 'config/unicorn.rb'
 
-set :unicorn_pid, "#{fetch(:deploy_to)}/shared/tmp/pids/unicorn.pid"
-
 # Default value for keep_releases is 5
 set :keep_releases, 20
 
 set :ssh_options, forward_agent: true
-
 
 after 'deploy:publishing', 'deploy:restart'
 
