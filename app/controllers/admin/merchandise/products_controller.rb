@@ -26,7 +26,7 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
   end
 
   def create
-    @product = Product.new(allowed_params.merge(user_id: current_user.id))
+    @product = Product.new(allowed_params.merge(merchant_id: current_user.merchant_id))
 
     if @product.save
       flash[:notice] = "Success, You should create a variant for the product."
@@ -36,8 +36,9 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
       flash[:error] = "The product could not be saved"
       render :action => :new
     end
-  rescue
-    render :text => "Please make sure you have solr started... Run this in the command line => bundle exec rake sunspot:solr:start"
+  rescue => e
+    render text: e.to_s
+    #render :text => "Please make sure you have solr started... Run this in the command line => bundle exec rake sunspot:solr:start"
   end
 
   def edit

@@ -12,6 +12,16 @@ EXAMPLE USAGE!!
   <%= new_child_fields_template(form, :properties, :partial => '/admin/merchandise/add_property')%>
 =end
 
+  def to_breadcrumb(product_type, has_parent = false)
+    return unless product_type.parent
+
+    capture do
+      concat(to_breadcrumb(product_type.parent, true))
+      concat link_to product_type.name, '/'
+      concat("&nbsp;&raquo;&nbsp;".html_safe) if has_parent
+    end
+  end
+
   def sortable(column, title = nil)
     title ||= column.titleize
     css_class = column == sort_column ? "current #{sort_direction}" : nil

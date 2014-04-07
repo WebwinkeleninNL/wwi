@@ -23,10 +23,6 @@ Hadean::Application.routes.draw do
 
   root :to => "welcome#index"
 
-  # custom
-
-  get 'product/:id' => 'welcome#product'
-
   namespace :customer do
     resources :registrations,   only: [:index, :new, :create]
     resource  :password_reset,  only: [:new, :create, :edit, :update]
@@ -237,5 +233,10 @@ Hadean::Application.routes.draw do
       resources :invoices
     end
   end
+
+  #
+  #
+  #
+  get ':product_type_name' => 'products#index'
 
 end

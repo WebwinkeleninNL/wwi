@@ -1,6 +1,8 @@
 class Admin::Merchandise::ProductTypesController < Admin::BaseController
   helper_method :sort_column, :sort_direction
   respond_to :html, :json
+  before_filter :verify_super_admin, only: [:new, :edit, :create, :update, :destroy]
+
   def index
     @product_types = ProductType.admin_grid(params).order(sort_column + " " + sort_direction).
                                               paginate(:page => pagination_page, :per_page => pagination_rows)

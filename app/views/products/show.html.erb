@@ -1,11 +1,7 @@
 <div class="breadcrumb">
 <a href="/">Home</a>
 &nbsp;&raquo;&nbsp;
-<a href="/">Herenmode</a>
-&nbsp;&raquo;&nbsp;
-<a href="/">Jassen</a>
-&nbsp;&raquo;&nbsp;
-Dstrezzed Puffer Jacket Bruin
+<%= to_breadcrumb(@product.product_type) %>
 </div>
 
 
@@ -40,12 +36,12 @@ Klik om te zoomen
 <h1>Dstrezzed Puffer Jacket Bruin</h1>
 <h2><a href="/">DSTREZZED</a></h2>
 
-<span class="price strike">99,00 EUR</span>&nbsp;&nbsp;
-<span class="price discount">69,00 EUR</span>
+<span class="price strike"><%= number_to_currency(@product.price) %> EUR</span>&nbsp;&nbsp;
+<span class="price discount"><%= number_to_currency(@product.price) %> EUR</span>
 </div>
 <div class="description">
 <span>Beschrijving</span><br />
-Gewatteerde jas van Dstrezzed met contrast rits. De jas heeft twee zakken aan de voorkant met een drukknoop. De jas is gemaakt van 100% polyester. Gewatteerde jas van Dstrezzed met contrast rits. De jas heeft twee zakken aan de voorkant met een drukknoop. De jas is gemaakt van 100% polyester.
+<%= @product.description.html_safe %>
 </div>
 <div class="viewmore product-actions-wrapper">
 <span class="response-message"></span>

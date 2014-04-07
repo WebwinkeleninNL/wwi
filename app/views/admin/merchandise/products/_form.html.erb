@@ -61,7 +61,7 @@
     <%#= form.select :product_type_id, @select_product_types %>
     <%= form.select :product_type_id,
                     nested_set_options(ProductType, ProductType.new) {|i| "#{'-' * i.level} #{i.name}" },
-                    { :include_blank => true } %>
+                    { :include_blank => true }, class: 'chzn-select' %>
   </div>
 
 <div class='clear'></div>
@@ -115,3 +115,15 @@
   </div>
 
 </fieldset>
+
+<% content_for :head do -%>
+  <%= stylesheet_link_tag 'chosen.css' %>
+<% end %>
+
+<% content_for :below_body do -%>
+  <%= javascript_include_tag 'chosen/chosen.jquery.min.js' %>
+  <%= javascript_include_tag 'admin/wizards/properties.js' %>
+  <script type="text/javascript">
+      jQuery("select").chosen();
+  </script>
+<% end %>

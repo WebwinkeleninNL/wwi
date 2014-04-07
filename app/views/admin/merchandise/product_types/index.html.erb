@@ -19,7 +19,9 @@
 
 <div class='admin_title_header'>
   <h3>Product Types</h3>
-  <%= link_to "New Type", new_admin_merchandise_product_type_path, class: "button" %>
+  <% if current_user.super_admin? %>
+    <%= link_to "New Type", new_admin_merchandise_product_type_path, class: "button" %>
+  <% end %>
 </div>
 
 <div class="admin_product_types">
