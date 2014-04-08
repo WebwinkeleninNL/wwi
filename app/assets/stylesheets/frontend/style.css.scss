@@ -379,7 +379,7 @@ cursor:pointer;
 input[type=checkbox].css-checkbox:checked + label.css-label {
 background-position: 0 -14px;
 }
-.css-label{ background-image:url(/assets/frontend/checkboxes.png);}
+.css-label{ background-image:url(image_path('frontend/checkboxes.png'));}
 .filter-reset {
 background: #000;
 display: block;
@@ -854,7 +854,7 @@ display: inline-block;
 vertical-align: middle;
 }
 .sociallinks [class*=share-] a {
-background-image:url(/assets/frontend/social-icons.png);
+background-image:url(image_path('frontend/social-icons.png'));
 width:30px;
 height:30px;
 text-indent:-9999em;
@@ -862,7 +862,7 @@ text-transform:capitalize;
 display:block;
 }
 .sociallinks #tell-a-friend-link {
-background-image:url(/assets/frontend/social-icons.png);
+background-image:url(image_path('frontend/social-icons.png'));
 background-position:0 0;
 float:none;
 }
@@ -1072,5 +1072,5 @@ span.customSelect.changed {
 background-color: #f0dea4;
 }
 .customSelectInner {
-background:url(/assets/frontend/customSelect-arrow.png) no-repeat center right;
+background:url(image_path('frontend/customSelect-arrow.png')) no-repeat center right;
 }
