@@ -58,6 +58,9 @@ GEM
       tzinfo (~> 0.3.37)
     addressable (2.3.5)
     afm (0.2.0)
+    airbrake (3.1.16)
+      builder
+      multi_json
     american_date (1.1.0)
     arel (4.0.2)
     ast (1.1.0)
@@ -394,6 +397,7 @@ DEPENDENCIES
   RedCloth
   actionpack-page_caching
   activemerchant (~> 1.29.3)
+  airbrake
   american_date
   authlogic!
   autotest-rails-pure
