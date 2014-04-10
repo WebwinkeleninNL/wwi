@@ -88,6 +88,3 @@ task :check_write_permissions do
     end
   end
 end
-
-        require './config/boot'
-        require 'airbrake/capistrano'
