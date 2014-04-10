@@ -1,0 +1,4 @@
+config/initializers/airbrake.rb filter=git-crypt diff=git-crypt
+config/deploy.rb filter=git-crypt diff=git-crypt
+config/deploy/production.rb filter=git-crypt diff=git-crypt
+config/deplot/staging.rb filter=git-crypt diff=git-crypt
