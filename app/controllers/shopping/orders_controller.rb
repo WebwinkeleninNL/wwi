@@ -1,5 +1,5 @@
 class Shopping::OrdersController < Shopping::BaseController
-  before_filter :require_login
+  before_filter :require_login, except: [:index]
   # GET /shopping/orders
   ### The intent of this action is two fold
   #
@@ -9,15 +9,19 @@ class Shopping::OrdersController < Shopping::BaseController
   #
   ##### THIS METHOD IS BASICALLY A CHECKOUT ENGINE
   def index
-    @order = find_or_create_order
-    if f = next_form(@order)
-      redirect_to f
-    else
-      expire_all_browser_cache
-      form_info
-    end
-  end
+    # CAPTCHA
+    # verify_recaptcha
 
+
+
+    # @order = find_or_create_order
+    # if f = next_form(@order)
+    #   redirect_to f
+    # else
+    #   expire_all_browser_cache
+    #   form_info
+    # end
+  end
 
   #  add checkout button
   def checkout

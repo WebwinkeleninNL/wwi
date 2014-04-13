@@ -1,139 +1,155 @@
-<% content_for :head do -%>
-  <%= stylesheet_link_tag 'tables.css' %>
-<% end %>
-<div id='order-wrapper' class='twelve'>
-  <div class='seven large-7 columns'>
-    <h1>Order Summary</h1>
+<script type="text/javascript">
+ var RecaptchaOptions = {
+    theme : 'white',
+    lang: '<%= I18n.locale %>',
+    tabindex: 4
+ };
+ </script>
 
-    <div id='order-items-summary'>
-      <% i = 1 %>
-      <% @order.order_items.group_by(&:variant_id).each do |variant_id, items| %>
-        <div id='order-item-<%= i %>' class='panel'>
-          <%= render :partial => 'order_item', :locals => {:items => items } %>
-        </div>
-        <% i += 1 %>
-      <% end %>
-    </div>
-    <div class='row'>
-      <div id='final-order-shipping-address' class=' four large-6 columns radius' >
-        <div class='panel'>
-          <h5>Shipping Address</h5>
-          <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => @order.ship_address} %>
-          <%= link_to 'Change address', shopping_addresses_path, :class => 'button tiny green' %>
-        </div>
-      </div>
-      <div id='final-order-shipping-address' class=' four large-6 columns radius last' >
-        <div class='panel'>
-          <h5>Billing Address</h5>
-          <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => @order.bill_address} %>
-          <%= link_to 'Change address', shopping_billing_addresses_path, :class => 'button tiny green' %>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class='pretty_table five large-5 columns last'>
-    <table>
-      <thead>
-        <tr class='odd'>
-          <th class='column1_header'>
-            Item
-          </th><th>Price:</th><th>Price + Tax</th>
-        </tr>
-      </thead>
-      <% @order.order_items.each do |item| %>
-        <tr class='<%= cycle("odd", "")%> '>
-          <td><%= item.variant.product.name %></td><td><%= number_to_currency item.price %></td><td><%= number_to_currency item.total %></td>
-        </tr>
-      <% end %>
-      <tr class='odd'>
-        <td></td><td>Sub-total:</td><td><%= number_to_currency @order.sub_total %></td>
-      </tr>
-      <tr>
-        <td></td><td>Shipping Charges:</td><td><%= number_to_currency @order.shipping_charges %></td>
-      </tr>
-      <% if @order.coupon_amount > 0.0 %>
-        <tr>
-          <td></td><td>Coupon:</td><td><%= number_to_currency @order.coupon_amount %></td>
-        </tr>
-      <% end %>
-      <% if @order.deal_amount && @order.deal_amount > 0.0 %>
-        <tr>
-          <td></td><td>Promotion:</td><td><%= number_to_currency @order.deal_amount %></td><td></td>
-        </tr>
-      <% end %>
-      <tr>
-        <td></td><td>Tax:</td><td><%= number_to_currency @order.taxed_amount %></td>
-      </tr>
-      <% if @order.amount_to_credit && @order.amount_to_credit > 0.0 %>
-        <tr class='odd'>
-          <td></td>
-          <td>Credits:</td><td></td>
-          <td><%= number_to_currency @order.amount_to_credit %></td>
-        </tr>
-      <% end %>
-
-      <tfoot>
-        <tr class='even'>
-          <td></td><td>Total:</td><td><em><%= number_to_currency @order.credited_total %></em></td>
-        </tr>
-      </tfoot>
-    </table>
-    <div>
-  </div>
-    <%= form_tag( shopping_order_path(@order),
-                                  method: :put,
-                                  html:  {class: 'custom'},
-                                  id:    'purchase_order') do  %>
-
-      <div class="field ">
-        <%= label_tag  :name %>
-      </div>
-<div class='clear'></div>
-      <div class='row'>
-        <div class="field six large-6 column">
-          <%= label_tag 'First' %>
-           <%= text_field_tag(:first_name, @credit_card.first_name) %>
-        </div>
-
-        <div class="field six large-6 column">
-          <%= label_tag :last_name, 'Last' %>
-           <%= text_field_tag(:last_name, @credit_card.last_name) %>
-        </div>
-      </div>
-      <div class='clear'></div>
-      <div class='row'>
-        <div class="field twelve large-8 column">
-          <%= label_tag 'Number'%>
-           <%= text_field_tag(:number, @credit_card.number ,:class => ' disableAutoComplete', :autocomplete => "off") %>
-        </div>
-        <div class="field three large-3 column">
-          <%= label_tag :verification_value, 'VCC'%>
-           <%= text_field_tag(:verification_value, @credit_card.verification_value ,:class => 'disableAutoComplete', :autocomplete => "off") %>
-        </div>
-      </div>
-      <div class='twelve large-12 clearfix custom'>
-        <div class='row'>
-
-          <div class="field column large-6">
-            <%= label_tag :type, 'Type'%>
-             <%= select_tag(:type, options_for_select(['visa', 'mastercard'])) %>
-          </div>
-
-          <div class="field column large-3">
-            <%= label_tag :month %>
-            <%= select_tag(:month, options_for_select(['01', '02',  '03', '04', '05', '06', '07', '08', '09', '10', '11', '12' ])) %>
-          </div>
-
-          <div class="field column large-3">
-            <%= label_tag :year %>
-             <%= select_tag(:year, options_for_select((Time.zone.now.year..(Time.zone.now.year + 10)))) %>
-          </div>
-        </div>
-      </div>
-
-
-      <%= submit_tag 'Complete Order', :class => 'button success' %>
-    <% end %>
-  </div>
+<div class="breadcrumb">
+  <a href="/">Home</a>&nbsp;»&nbsp;<%=t '.page-title' %>
 </div>
 
+<div class="content">
+  <div class="opcbox-main clearfix">
+    <h1 class="page-title"><%=t '.page-title' %></h1>
+    <div class="opcbox-body">
+      <div class="checkout-steps clearfix">
+        <div class="step-container-active">
+          <h2 class="step-title-active clearfix"><span class="step-number">1</span><%=t '.auth' %></h2>
+          <div class="step-body-active">
+            <div class="clearfix">
+
+              <div class="login-form">
+                <form method="post">
+                  <div class="checkout-login-form">
+                      <h2 class="opc-subheader"><%=t '.returning_customer' %></h2>
+                      <div class="control-group">
+                        <label>E-mail</label>
+                        <input name="user_login" size="30" placeholder="E-mail adres" value="" class="opc-input-text" type="text">
+                      </div>
+                      <div class="control-group password">
+                        <label class="forgot-password-label"><%=t '.password' %></label><a href="" class="forgot-password"><%=t '.forgot-password' %></a>
+                        <input name="password" size="30" placeholder="Wachtwoord" value="" class="opc-input-text" maxlength="32" type="password">
+                      </div>
+                      <div class="captcha control-group">
+                        <label>Captcha</label>
+                        <%= recaptcha_tags %>
+                      </div>
+                    </div>
+                    <div class="checkout-buttons clearfix">
+                      <div class="clearfix">
+                       <div style="float:right;"><input class="main-button" value="<%=t '.aanmelden' %>" type="submit"></div>
+                        <div class="remember-me-chekbox">
+                        <label class="valign"><input type="checkbox"><%=t '.remember_me' %></label>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+              <div class="checkout-register">
+                <div class="register-content">
+                  <h2 class="opc-subheader"><%=t '.nieuwe_klant' %></h2>
+                  <ul class="register-methods">
+                    <li class="one">
+                      <input class="radio valign" name="checkout_type" value="" checked="checked" type="radio">
+                      <label><span class="method-title"><%=t '.registreer' %></span><span class="method-hint"><%=t '.register_hint' %></span></label>
+                    </li>
+                    <li>
+                    <input class="radio valign" name="checkout_type" value="" type="radio">
+                    <label><span class="method-title"><%=t '.afrekenen_als_gast' %></span><span class="method-hint"><%=t '.checkout_as_guest_hint' %></span></label>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="checkout-buttons">
+                  <input value="<%=t '.registreer' %>" class="main-button" type="submit">
+                </div>
+
+              </div>
+            </div>
+            <div class="clear"></div>
+          </div>
+        </div>
+
+        <div class="step-container step-two">
+          <h2 class="step-title clearfix">
+            <span class="step-number">2</span><a class="title"><%=t '.factuur_en_verzendadres' %></a>
+          </h2>
+        </div>
+
+        <div class="step-container">
+          <h2 class="step-title clearfix">
+            <span class="step-number">3</span><a class="title"><%=t '.verzendopties' %></a>
+          </h2>
+        </div>
+
+        <div class="step-container step-four">
+          <h2 class="step-title clearfix">
+            <span class="step-number">4</span><a class="title"><%=t '.factureringsopties' %></a>
+          </h2>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="order-summary">
+    <h3 class="sidebox-title"><%=t '.samenvatting_bestelling' %></h3>
+    <div class="sidebox-body">
+      <div class="checkout-summary">
+        <table>
+          <tbody class="tbody">
+            <tr>
+              <td>3 item(s)</td>
+              <td class="right"><span>€1.297.00</span></td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <div class="code-input discount-coupon">
+                  <form action="" method="post">
+                    <div class="control-group input-append">
+                      <label for="coupon_field">Coupon code</label>
+                      <input class="opc-input-text" size="40" value="" placeholder="Vul coupon code hier in..." type="text">
+                    </div>
+                  </form>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+            <tbody class="total">
+              <tr>
+                <th colspan="2">
+                  Totaal
+                  <span class="total-sum">€699.00</span>
+                </th>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="opc-sidebox order-products">
+    <h3 class="sidebox-title"><%=t '.producten_in_uw_bestelling' %></h3>
+    <div class="sidebox-body">
+      <ul class="order-product-list">
+      <li>
+      <a href="" class="product-name">Lorem ipsum dummy text</a>
+      <a href="" class="delete"> X</a>
+      <span class="product-price">1&nbsp;x&nbsp;€699.00</span>
+      </li>
+      <li>
+      <a href="" class="product-name">Lorem ipsum dummy text</a>
+      <a href="" class="delete"> X</a>
+      <span class="product-price">1&nbsp;x&nbsp;€199.00</span>
+      </li>
+      <li>
+      <a href="" class="product-name">Lorem ipsum dummy text</a>
+      <a href="" class="delete"> X</a>
+      <span class="product-price">1&nbsp;x&nbsp;€399.00</span>
+      </li>
+      </ul>
+    </div>
+  </div>
+</div>

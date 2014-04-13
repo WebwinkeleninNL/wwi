@@ -295,6 +295,7 @@ GEM
     rb-fsevent (0.9.4)
     rb-inotify (0.9.3)
       ffi (>= 0.5.0)
+    recaptcha (0.3.6)
     rmagick (2.13.2)
     rspec (2.12.0)
       rspec-core (~> 2.12.0)
@@ -451,6 +452,7 @@ DEPENDENCIES
   rails_12factor
   rails_config
   rake (~> 10.1)
+  recaptcha
   rmagick
   rspec-expectations
   rspec-rails (~> 2.12.2)

@@ -126,3 +126,4 @@ end
 
 gem 'kaminari'
 
+gem 'recaptcha', :require => "recaptcha/rails"
