@@ -12,6 +12,26 @@ EXAMPLE USAGE!!
   <%= new_child_fields_template(form, :properties, :partial => '/admin/merchandise/add_property')%>
 =end
 
+  def step_active(conds)
+    conds ? "active" : ''
+  end
+
+  def step_one
+    step_active(current_user.nil? || params[:step].nil? || params[:step] == 'first')
+  end
+
+  def step_two
+    step_active(!current_user.nil? && !params[:step].nil? && params[:step] == 'second')
+  end
+
+  def step_tree
+    step_active(!current_user.nil? && !params[:step].nil? && params[:step] == 'tree')
+  end
+
+  def step_four
+    step_active(!current_user.nil? && !params[:step].nil? && params[:step] == 'four')
+  end
+
   def to_breadcrumb(product_type, has_parent = false)
     return unless product_type.parent
 

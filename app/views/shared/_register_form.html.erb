@@ -1,0 +1,35 @@
+<div class="login-form">
+  <%= form_for user, url: customer_registrations_path(user), html: {class: 'custom'}  do |form| %>
+    <h2 class="opc-subheader"><%=t 'checkout.index.nieuwe_klant' %></h2>
+    <div class="checkout-login-form">
+      <div class="control-group">
+          <%=form.label :first_name, 'First name*' %>
+          <%= form.text_field :first_name, class: 'opc-input-text' %>
+      </div>
+      <div class="control-group">
+          <%=form.label :last_name, 'Last name*' %>
+          <%= form.text_field :last_name, class: 'opc-input-text' %>
+      </div>
+      <div class="control-group">
+          <%=form.label :email, 'Email*' %>
+          <%= form.email_field :email, class: 'opc-input-text', :autocomplete => 'off', :autocapitalize => 'off'  %>
+      </div>
+      <div class="control-group">
+          <%=form.label :password, 'Password*' %>
+          <%= form.password_field :password, class: 'opc-input-text', :autocomplete => 'off', :autocapitalize => 'off'  %>
+      </div>
+      <div class="control-group">
+          <%=form.label :password_confirmation, 'Confirm*' %>
+          <%= form.password_field :password_confirmation, class: 'opc-input-text', :autocomplete => 'off', :autocapitalize => 'off'  %>
+      </div>
+
+      <div class="checkout-buttons clearfix">
+        <div class="clearfix">
+          <div style="float:right;">
+            <%= form.submit "Register", :class => 'main-button' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

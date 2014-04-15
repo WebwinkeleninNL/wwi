@@ -12,15 +12,13 @@ class Shopping::OrdersController < Shopping::BaseController
     # CAPTCHA
     # verify_recaptcha
 
-
-
-    # @order = find_or_create_order
-    # if f = next_form(@order)
-    #   redirect_to f
-    # else
-    #   expire_all_browser_cache
-    #   form_info
-    # end
+    @order = find_or_create_order
+    if f = next_form(@order)
+      redirect_to f
+    else
+      expire_all_browser_cache
+      form_info
+    end
   end
 
   #  add checkout button

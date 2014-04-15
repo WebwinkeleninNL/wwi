@@ -1,25 +1,27 @@
 nl:
-  shopping:
-      orders:
-        index:
-          page-title: One Page Checkout
-          auth: Inloggen
-          returning_customer: Terugkerende klant
-          password: Wachtwoord
-          forgot-password: 'Wachtwoord vergeten?'
-          factuur_en_verzendadres: 'Factuur-en verzendadres'
-          verzendopties: Verzendopties
-          factureringsopties: Factureringsopties
-          samenvatting_bestelling: Samenvatting Bestelling
-          producten_in_uw_bestelling: Producten in uw bestelling
-          nieuwe_klant: Nieuwe Klant
-          registreer: Registreer
-          afrekenen_als_gast: Afrekenen als gast
-          register_hint: Maak een account en gebruik het voor de kassa
-          checkout_as_guest_hint: Snel afrekenen zonder een account
-          remember_me: Onthoud mij
-          aanmelden: Aanmelden
-
+  checkout:
+    index:
+      page-title: One Page Checkout
+      auth: Inloggen
+      returning_customer: Terugkerende klant
+      password: Wachtwoord
+      forgot-password: 'Wachtwoord vergeten?'
+      factuur_en_verzendadres: 'Factuur-en verzendadres'
+      verzendopties: Verzendopties
+      factureringsopties: Factureringsopties
+      samenvatting_bestelling: Samenvatting Bestelling
+      producten_in_uw_bestelling: Producten in uw bestelling
+      nieuwe_klant: Nieuwe Klant
+      registreer: Registreer
+      afrekenen_als_gast: Afrekenen als gast
+      register_hint: Maak een account en gebruik het voor de kassa
+      checkout_as_guest_hint: Snel afrekenen zonder een account
+      remember_me: Onthoud mij
+      login: Aanmelden
+      email_address: E-mail adres
+  products:
+    show:
+      add_to_cart: Plaats in winkelwagen
 
   choose_your_city: Kies uw stad
   categories: Categorie

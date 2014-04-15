@@ -6,63 +6,6 @@
   <title>Webwinkelenin.nl</title>
   <%= stylesheet_link_tag "frontend/style", "jquery.nouislider" %>
   <%= javascript_include_tag 'frontend' %>
-
-  <script type="text/javascript">
-  $(function(){
-
-    $('select.styled').customSelect();
-    $('.slide-up-tabs li span a').bind('click', function(e){
-      e.preventDefault();
-
-      $(this).parents('li').find('> ul').slideToggle();
-      $(this).parents('li').toggleClass('open');
-
-    });
-
-    $('.quantity .minus').bind('click', function(e){
-      e.preventDefault();
-
-      var qty = $('input[name="quantity"]');
-      var old = parseInt(qty.val());
-
-      if(old > 1){
-        qty.val(old - 1);
-      }
-
-      return false;
-    });
-    $('.quantity .plus').bind('click', function(e){
-      e.preventDefault();
-
-      var qty = $('input[name="quantity"]');
-      var old = parseInt(qty.val());
-
-      qty.val(old + 1);
-
-      return false;
-    });
-
-    // Setting up busket items
-    $('.shoppingbag a span.items').html($.cookie('shoppingbag'));
-
-    $('[name="shoppingBag"]').bind('click', function(e){
-      e.preventDefault();
-
-      var qty = parseInt($('input[name="quantity"]').val());
-      var shoppingbag = $('.shoppingbag a span.items');
-      var items = parseInt(shoppingbag.html());
-      var total = items + qty;
-
-      shoppingbag.html(total);
-
-      // save to cookie
-      $.cookie('shoppingbag', total);
-
-      return false;
-    })
-  });
-  </script>
-
   <%= csrf_meta_tag %>
 
   <%= yield :head %>
@@ -70,42 +13,45 @@
 
 <body>
 <div class="top-nav">
-<div class="header container">
+  <div class="header container">
 
-<div class="logo">
-  <a href="/">
-    <%= image_tag 'frontend/logo.png', title: "Webwinkelenin", alt: "Webwinkelenin" %>
-  </a>
-</div>
-<div class="header-right">
-<div class="shoppingbag">
-  <a href="/">
-    <%= image_tag "frontend/cart.png", class: "cart", alt: "cart" %>
-  </a>
-  <a class="bag-items minicart" rel="nofollow" href="/"><span class='items'>0</span> ITEMS, TOTAAL €<span>0,00</span></a>
-</div>
-</div>
-<div class="language">
-<select class="styled">
-  <option>Nederland</option>
-  <option>Duits</option>
-  <option>Engels</option>
-</select>
-</div>
-<ul class="topmenu">
-  <li>
-    <%= image_tag "frontend/user.png", class: "cart", alt: "user" %>
-  </li>
-<li>
-<a href="/login">Klant Login</a>
-</li>
-<li>
-<a href="/">Aanmelden</a>
-</li>
-</ul>
-</div>
-</div>
+    <div class="logo">
+      <a href="/">
+        <%= image_tag 'frontend/logo.png', title: "Webwinkelenin", alt: "Webwinkelenin" %>
+      </a>
+    </div>
 
+    <div class="header-right">
+      <div class="shoppingbag">
+        <a href="/">
+          <%= image_tag "frontend/cart.png", class: "cart", alt: "cart" %>
+        </a>
+        <a class="bag-items minicart" rel="nofollow" href="/">
+          <span class='items'>0</span> ITEMS, TOTAAL €<span>0,00</span>
+        </a>
+        <div class='mini-basket' style='display: none'>
+          <div class='flash_notice'></div>
+          <div class='items'></div>
+          <a href='/checkout'><%=t '.checkout' %></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="language">
+      <select class="styled">
+        <option>Nederland</option>
+        <option>Duits</option>
+        <option>Engels</option>
+      </select>
+    </div>
+
+    <ul class="topmenu">
+      <li><%= image_tag "frontend/user.png", class: "cart", alt: "user" %></li>
+      <li><a href="/login">Klant Login</a></li>
+      <li><a href="/">Aanmelden</a></li>
+    </ul>
+  </div>
+</div>
 
 <div class="container">
 <div class="mainmenu">

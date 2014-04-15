@@ -1,5 +1,7 @@
 Hadean::Application.routes.draw do
 
+  get '/checkout' => 'checkout#index'
+
   resources :image_groups
   # mount Resque::Server.new, at: "/resque"
 

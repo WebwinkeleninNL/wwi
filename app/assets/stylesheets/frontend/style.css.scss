@@ -70,38 +70,47 @@ font-weight: normal;
 padding:75px 0 0 0;
 }
 .container {
-width: 1062px;
-margin: 0 auto;
-text-align: left;
-padding: 0;
-position: relative;
+  width: 1062px;
+  margin: 0 auto;
+  text-align: left;
+  padding: 0;
+  position: relative;
+}
+
+.mini-basket {
+  width: 366px;
+  border: 1px solid #BFBFBF;
+  position: absolute;
+  z-index: 1002;
+  margin: 50px 0 0 -214px;
+  background: #FFF;
 }
 .top-nav {
-background: #FFFFFF;
-content: "";
-height: 50px;
-left: 0;
-position: fixed;
-top: 0;
-width: 100%;
-z-index: 1002;
--webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
--webkit-box-sizing: border-box;
--moz-box-sizing: border-box;
-box-sizing: border-box;
+  background: #FFFFFF;
+  content: "";
+  height: 50px;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1002;
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 .top-nav img {
-margin: 5px 10px 0 0;
+  margin: 5px 10px 0 0;
 }
 .header {
-color: #666;
-font-size: 11px;
-line-height: 15px;
+  color: #666;
+  font-size: 11px;
+  line-height: 15px;
 }
 .header a {
-color: #666;
-text-decoration: none;
+  color: #666;
+  text-decoration: none;
 }
 .header a:hover {
 text-decoration: underline;
@@ -164,15 +173,18 @@ position: relative;
 top: 7px;
 }
 .shoppingbag {
-margin: 0;
-padding: 0;
+  margin: 0;
+  padding: 0;
+  z-index: 1000;
 }
+
 .shoppingbag a {
-display: inline-block;
-padding: 18px 0px;
-float: left;
-color: #999;
+  display: inline-block;
+  padding: 18px 0px;
+  float: left;
+  color: #999;
 }
+
 .shoppingbag a.bag-items {
 display: inline-block;
 }
@@ -1180,23 +1192,23 @@ background:url(image_path('frontend/customSelect-arrow.png')) no-repeat center r
     font-weight: bold;
     padding-bottom: 12px;
 }
-.step-container, .step-container-active {
+.step-container {
     margin: 0 0 5px 0;
 }
-.step-title, .step-title-active, .step-title-complete {
+.step-title, .step-title-complete {
     position: relative;
     padding: 15px;
 }
-.step-title, .step-title-active, .step-title-complete {
+.step-title, .step-title-complete {
     border: 1px solid #eeeee;
 }
-.step-body-active {
+.active .step-body {
     padding: 20px 0 0 0;
 }
 .step-title {
     background-color: #f2f2f2;
 }
-.step-title-active {
+ .active .step-title  {
     background-color: #EEEEEE;
     font-size: 13px;
     font-weight: bold;
@@ -1210,7 +1222,7 @@ background:url(image_path('frontend/customSelect-arrow.png')) no-repeat center r
     text-align: center;
     width: 17px;
 }
-.step-title-active span.step-number {
+.active .step-title span.step-number {
   background:#222222;
      color: #FFFFFF;
     height: 23px;

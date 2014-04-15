@@ -30,7 +30,10 @@ Klik om te zoomen
 </div>
 
   </div> <!-- product-images -->
-<div class="product-info">
+<div class="product-info"
+     data-url='<%= product_path(@product) %>'
+     data-name='<%= @product.name %>'
+     data-variant-id='<%= @product.variants.first.id %>'>
 
 <div class="product-details">
 <h1>Dstrezzed Puffer Jacket Bruin</h1>
@@ -54,7 +57,7 @@ Klik om te zoomen
   <input class="plus" type="button" value="+">
 </div>
 <div class="button">
-<input name="shoppingBag" value="Plaats in winkelwagen" class="main-button" type="submit">
+  <input name="shoppingBag" value='<%=t '.add_to_cart' %>' class="main-button" type="submit">
 </div>
 <div class="button">
 <div class="wishlist " class="add-wishlist">

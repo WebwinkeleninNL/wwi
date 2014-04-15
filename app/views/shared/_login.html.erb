@@ -1,0 +1,27 @@
+<div class="login-form">
+  <%= form_for  session, :as => :user_session,
+                :url => user_sessions_path(session) do |form| %>
+    <div class="checkout-login-form">
+        <h2 class="opc-subheader"><%=t '.returning_customer' %></h2>
+        <div class="control-group">
+          <%=form.label :email, 'Email' %>
+          <%= form.email_field :email, class: 'opc-input-text', placeholder: t('checkout.index.email_address'), autocomplete: 'off', autocapitalize: 'off', size: 30 %>
+        </div>
+        <div class="control-group password">
+          <%= link_to t('.forgot_password'), new_customer_password_reset_path(), class: 'forgot-password' %>
+          <%=form.label :password, t('checkout.index.password'), class: 'forgot-password-label' %>
+          <%= form.password_field :password, class: 'opc-input-text',  placeholder: t('checkout.index.password'), autocomplete: 'off', autocapitalize: 'off', maxlength: 32 %>
+        </div>
+      </div>
+      <div class="checkout-buttons clearfix">
+        <div class="clearfix">
+          <div style="float:right;">
+            <%= form.submit t('checkout.index.login'), :class => 'main-button' %>
+          </div>
+          <div class="remember-me-chekbox">
+          <label class="valign"><input type="checkbox"><%=t 'checkout.index.remember_me' %></label>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
