@@ -69,6 +69,7 @@ class Admin::Shopping::Checkout::BaseController < Admin::Shopping::BaseControlle
     session[:admin_cart_id] = nil
     session[:order_admin_id] = nil
   end
+
   def countries
     @countries ||= Country.active
   end

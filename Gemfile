@@ -127,3 +127,5 @@ end
 gem 'kaminari'
 
 gem 'recaptcha', :require => "recaptcha/rails"
+
+gem 'omni_kassa'

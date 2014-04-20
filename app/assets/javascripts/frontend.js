@@ -2,6 +2,7 @@
 //= require jquery.customSelect
 //= require jquery.nouislider
 //= require jquery.cookie
+//= require jquery.modal
 
 function add_product_to_basket(basket, product){
   basket.find('.items').append("<li><a href='/products/"+product.url+"'>"+product.name +"</a><a class='delete' href='#delete'>x</a></li>");
@@ -128,4 +129,19 @@ $(function(){
 
   // Setting up busket items
   $('.shoppingbag a span.items').html($.cookie('shoppingbag'));
+
+
+  $('.register').bind('click', function(e){
+    e.preventDefault();
+
+    $('#register-form').modal();
+  });
+
+  // $('.register-close').bind('click', function(e){
+  //   e.preventDefault();
+
+  //   window.close();
+  //   return true;
+  // });
+
 })

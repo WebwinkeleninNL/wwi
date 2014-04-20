@@ -17,19 +17,19 @@ EXAMPLE USAGE!!
   end
 
   def step_one
-    step_active(current_user.nil? || params[:step].nil? || params[:step] == 'first')
+    step_active(current_user.nil? || params[:step].nil? || params[:step] == '1')
   end
 
   def step_two
-    step_active(!current_user.nil? && !params[:step].nil? && params[:step] == 'second')
+    step_active(!current_user.nil? && @step == 2)
   end
 
   def step_tree
-    step_active(!current_user.nil? && !params[:step].nil? && params[:step] == 'tree')
+    step_active(!current_user.nil? && @step == 3)
   end
 
   def step_four
-    step_active(!current_user.nil? && !params[:step].nil? && params[:step] == 'four')
+    step_active(!current_user.nil? && @step == 4)
   end
 
   def to_breadcrumb(product_type, has_parent = false)

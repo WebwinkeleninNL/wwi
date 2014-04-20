@@ -273,6 +273,10 @@ class User < ActiveRecord::Base
                      email_filter(params[:email])
   end
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
   private
 
   def self.first_name_filter(first_name)

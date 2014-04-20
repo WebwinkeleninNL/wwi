@@ -1,7 +1,12 @@
 class UserSessionsController < ApplicationController
   def new
     @user_session = UserSession.new
+  end
+
+  def signup
     @user = User.new
+
+    render layout: params[:popup].nil?
   end
 
   def create

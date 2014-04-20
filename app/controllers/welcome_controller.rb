@@ -18,4 +18,12 @@ class WelcomeController < ApplicationController
   def overzicht
     @featured_product
   end
+
+  def locale
+    if params[:locale] && ['en', 'de', 'nl'].include?(params[:locale])
+      session[:locale] = params[:locale]
+    end
+
+    redirect_to :back
+  end
 end

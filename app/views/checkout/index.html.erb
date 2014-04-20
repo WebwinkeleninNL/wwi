@@ -4,7 +4,11 @@
     lang: '<%= I18n.locale %>',
     tabindex: 4
  };
- </script>
+ <% if params[:modal] && params[:modal] == 'register' %>
+   $(function(){ $('#register-form').modal(); })();
+ <% end %>
+</script>
+<%= stylesheet_link_tag 'jquery.modal' %>
 
 <div class="breadcrumb">
   <a href="/">Home</a>&nbsp;»&nbsp;<%=t '.page-title' %>
@@ -17,52 +21,35 @@
       <div class="checkout-steps clearfix">
         <div class="step-container <%= step_one %>">
           <h2 class="step-title clearfix"><span class="step-number">1</span><%=t '.auth' %></h2>
-          <div class="step-body">
-            <div class="clearfix">
-
-              <%= render 'shared/login', session: @user_session %>
-
-              <div class="checkout-register">
-                <div class="register-content">
-                  <h2 class="opc-subheader"><%=t '.nieuwe_klant' %></h2>
-                  <ul class="register-methods">
-                    <li class="one">
-                      <input class="radio valign" name="checkout_type" value="" checked="checked" type="radio">
-                      <label><span class="method-title"><%=t '.registreer' %></span><span class="method-hint"><%=t '.register_hint' %></span></label>
-                    </li>
-                    <li>
-                    <input class="radio valign" name="checkout_type" value="" type="radio">
-                    <label><span class="method-title"><%=t '.afrekenen_als_gast' %></span><span class="method-hint"><%=t '.checkout_as_guest_hint' %></span></label>
-                    </li>
-                  </ul>
-                </div>
-
-                <div class="checkout-buttons">
-                  <input value="<%=t '.registreer' %>" class="main-button" type="submit">
-                </div>
-
-              </div>
-            </div>
-            <div class="clear"></div>
-          </div>
+          <% if @step == 1 %>
+            <%= render 'checkout/step_one' %>
+          <% end %>
         </div>
-
         <div class="step-container <%= step_two %>">
           <h2 class="step-title clearfix">
-            <span class="step-number">2</span><a class="title"><%=t '.factuur_en_verzendadres' %></a>
+            <span class="step-number">2</span><%=t '.factuur_en_verzendadres' %>
           </h2>
+          <% if @step == 2 %>
+            <%= render 'checkout/step_two' %>
+          <% end %>
         </div>
 
         <div class="step-container <%= step_tree %>">
           <h2 class="step-title clearfix">
-            <span class="step-number">3</span><a class="title"><%=t '.verzendopties' %></a>
+            <span class="step-number">3</span><%=t '.verzendopties' %>
           </h2>
+          <% if @step == 3 %>
+            <%= render 'checkout/step_three' %>
+          <% end %>
         </div>
 
         <div class="step-container <%= step_four %>">
           <h2 class="step-title clearfix">
-            <span class="step-number">4</span><a class="title"><%=t '.factureringsopties' %></a>
+            <span class="step-number">4</span><%=t '.factureringsopties' %>
           </h2>
+          <% if @step == 4 %>
+            <%= render 'checkout/step_four' %>
+          <% end %>
         </div>
       </div>
     </div>

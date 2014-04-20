@@ -57,6 +57,7 @@ Hadean::Application.configure do
                                 'tables.css',
                                 'frontend/style.css',
                                 'jquery.nouislider.css',
+                                'jquery.modal.css',
                                 'cupertino/jquery-ui-1.8.12.custom.css',# in vendor
                                 'modstyles.css', # in vendor
                                 'scaffold.css' # in vendor

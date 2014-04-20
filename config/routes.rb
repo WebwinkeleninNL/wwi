@@ -1,6 +1,10 @@
 Hadean::Application.routes.draw do
 
+  post '/locale' => 'welcome#locale'
+
   get '/checkout' => 'checkout#index'
+  get '/checkout/2' => 'checkout#step_two'
+  get '/signup' => 'user_sessions#signup'
 
   resources :image_groups
   # mount Resque::Server.new, at: "/resque"
@@ -29,6 +33,7 @@ Hadean::Application.routes.draw do
     resources :registrations,   only: [:index, :new, :create]
     resource  :password_reset,  only: [:new, :create, :edit, :update]
     resource  :activation,      only: [:show]
+    resource  :profile,         only: [:show]
   end
 
   namespace :myaccount do

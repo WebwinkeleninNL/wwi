@@ -44,7 +44,7 @@ class ApplicationController < ActionController::Base
   private
 
   def set_locale
-    I18n.locale = params[:locale] || I18n.default_locale
+    I18n.locale = session[:locale] || I18n.default_locale
   end
 
   def customer_confirmation_page_view

@@ -32,23 +32,40 @@
         <div class='mini-basket' style='display: none'>
           <div class='flash_notice'></div>
           <div class='items'></div>
-          <a href='/checkout'><%=t '.checkout' %></a>
+          <div>
+            <a href='/checkout?step=1'><%=t '.checkout' %></a>
+          </div>
         </div>
       </div>
     </div>
 
     <div class="language">
-      <select class="styled">
-        <option>Nederland</option>
-        <option>Duits</option>
-        <option>Engels</option>
-      </select>
+      <%= form_tag locale_path do %>
+        <%=
+          select_tag :locale,
+            options_for_select(
+              [
+                ['Nederland', 'nl'],
+                ['Deutsch', 'de'],
+                ['English', 'en'],
+              ],
+              selected: I18n.locale
+            ),
+            class: 'styled',
+            onchange: "this.form.submit()"
+        %>
+      <% end %>
     </div>
 
     <ul class="topmenu">
       <li><%= image_tag "frontend/user.png", class: "cart", alt: "user" %></li>
-      <li><a href="/login">Klant Login</a></li>
-      <li><a href="/">Aanmelden</a></li>
+      <li>
+      <% if current_user.nil? %>
+        <a href="/login">Klant Login</a>
+      <% else %>
+        <%= link_to current_user.full_name, customer_profile_path %>
+      <% end %>
+      </li>
     </ul>
   </div>
 </div>

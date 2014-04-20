@@ -1,37 +1,40 @@
-nl:
-  nl: Nederland
-  en: Engels
-  de: Duits
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+de:
+  nl: Niederlande
+  en: Englisch
+  de: Deutsch
   checkout:
     index:
       page-title: One Page Checkout
-      auth: Inloggen
-      returning_customer: Terugkerende klant
-      password: Wachtwoord
-      forgot-password: 'Wachtwoord vergeten?'
-      factuur_en_verzendadres: 'Factuur-en verzendadres'
-      verzendopties: Verzendopties
-      factureringsopties: Factureringsopties
-      samenvatting_bestelling: Samenvatting Bestelling
-      producten_in_uw_bestelling: Producten in uw bestelling
-      nieuwe_klant: Nieuwe Klant
-      registreer: Registreer
-      afrekenen_als_gast: Afrekenen als gast
-      register_hint: Maak een account en gebruik het voor de kassa
-      checkout_as_guest_hint: Snel afrekenen zonder een account
-      remember_me: Onthoud mij
-      login: Aanmelden
-      email_address: E-mail adres
+      auth: login
+      returning_customer: Returning Customer
+      password: Password
+      forgot-password: 'Forgot password?'
+      factuur_en_verzendadres: 'Billing and shipping address'
+      verzendopties: 'Shipping options'
+      factureringsopties: 'Billing options'
+      samenvatting_bestelling: Summary order
+      producten_in_uw_bestelling: Items in your order
+      nieuwe_klant: New customer
+      registreer: Register
+      afrekenen_als_gast: Checkout as a guest
+      register_hint: Create an account and use it for the cash
+      checkout_as_guest_hint: Express checkout without an account
+      remember_me: Remember me
+      login: Register
+      email_address: Email address
   products:
     show:
-      add_to_cart: Plaats in winkelwagen
+      add_to_cart: Add to cart
 
-  choose_your_city: Kies uw stad
-  categories: Categorie
+
+  choose_your_city: Choose your city
 
   company:              'Shopping.in'
   company_phone:        '1-800-ROR-ECOM'
-  hello:                'Hallo'
+  hello:                'Hello'
   out_of_stock_notice:  'Sorry this item is out of stock.'
   item_saved_for_later: 'The item will be saved for later.'
   reset_password_title: 'Confirm your identity to reset password'

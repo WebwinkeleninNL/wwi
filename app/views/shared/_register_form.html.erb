@@ -1,5 +1,5 @@
 <div class="login-form">
-  <%= form_for user, url: customer_registrations_path(user), html: {class: 'custom'}  do |form| %>
+  <%= form_for user, url: customer_registrations_path(user, url: url), html: {class: 'custom'}  do |form| %>
     <h2 class="opc-subheader"><%=t 'checkout.index.nieuwe_klant' %></h2>
     <div class="checkout-login-form">
       <div class="control-group">
@@ -26,7 +26,7 @@
       <div class="checkout-buttons clearfix">
         <div class="clearfix">
           <div style="float:right;">
-            <%= form.submit "Register", :class => 'main-button' %>
+            <%= form.submit "Register", :class => 'register-close main-button' %>
           </div>
         </div>
       </div>
