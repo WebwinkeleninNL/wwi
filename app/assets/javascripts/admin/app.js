@@ -1,3 +1,6 @@
+// require autocomplete-rails
+//= require jquery.selective
+
 jQuery(document).ready(function ($) {
 
   /* Use this js doc for all application specific JS */

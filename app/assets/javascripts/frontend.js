@@ -5,12 +5,26 @@
 //= require jquery.modal
 
 function add_product_to_basket(basket, product){
-  basket.find('.items').append("<li><a href='/products/"+product.url+"'>"+product.name +"</a><a class='delete' href='#delete'>x</a></li>");
+  basket.find('.items').append("<li><a href='"+product.url+"'>"+product.name +"</a><a class='delete' href='#delete'>x</a></li>");
 }
 $.removeCookie('basket-items');
 $.removeCookie('shoppingbag');
 
 $(function(){
+  $('#minicart-outer').mouseover(function() {
+    var $popup = $('#minicart_popup');
+    $popup.fadeIn('fast');
+    $(this).mouseleave(function() {
+      $popup.fadeOut('fast');
+    });
+  });
+
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+
   var mini_basket = $('.mini-basket');
 
   if($.cookie('basket-items') !== undefined){
@@ -42,29 +56,29 @@ $(function(){
 
     if( !self.hasClass('pressed') ){
       self.addClass('pressed');
-    var qty = parseInt($('input[name="quantity"]').val());
+      var qty = parseInt($('input[name="quantity"]').val());
 
-    var shoppingbag = $('.shoppingbag a span.items');
-    var items = parseInt(shoppingbag.html());
-    var total = items + qty;
+      var shoppingbag = $('.shoppingbag a span.items');
+      var items = parseInt(shoppingbag.html());
+      var total = items + qty;
 
-    shoppingbag.html(total);
-    mini_basket.toggle();
+      shoppingbag.html(total);
+      mini_basket.toggle();
 
 
-    var p = $('.product-info');
-    var product = {
-      url: p.data('url'),
-      name: p.data('name'),
-      variant_id: p.data('variant-id')
-    }
+      var p = $('.product-info');
+      var product = {
+        url: p.data('url'),
+        name: p.data('name'),
+        variant_id: p.data('variant-id')
+      }
 
-    // save to cookie
-    $.cookie('shoppingbag', total);
+      // save to cookie
+      $.cookie('shoppingbag', total);
 
-    var products = $.cookie('basket-items');
-    products += "name:"+product.name+",url:"+product.url+',sku:'+product.variant_id+';'
-    $.cookie('basket-items', products);
+      var products = $.cookie('basket-items');
+      products += "name:"+product.name+",url:"+product.url+',sku:'+product.variant_id+';'
+      $.cookie('basket-items', products);
 
       $.ajax({
         url: '/shopping/cart_items',

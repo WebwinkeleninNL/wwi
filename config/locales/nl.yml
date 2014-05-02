@@ -2,6 +2,8 @@ nl:
   nl: Nederland
   en: Engels
   de: Duits
+  minicart:
+    checkout: Checkout
   checkout:
     index:
       page-title: One Page Checkout

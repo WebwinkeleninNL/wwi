@@ -16,7 +16,7 @@ class Customer::RegistrationsController < ApplicationController
     # auto-login which can't happen here because
     # the User has not yet been activated
     if @user.save_without_session_maintenance
-      @user.deliver_activation_instructions!
+      #@user.deliver_activation_instructions!
       #cookies[:hadean_uid] = @user.access_token
       #session[:authenticated_at] = Time.now
       #cookies[:insecure] = false
@@ -28,6 +28,7 @@ class Customer::RegistrationsController < ApplicationController
     else
       @registration = true
       @user_session = UserSession.new
+      logger.debug @user.errors.full_messages
       render :template => 'user_sessions/signup'
     end
   end

@@ -31,41 +31,55 @@ class Shopping::OrdersController < Shopping::BaseController
 
   # POST /shopping/orders
   def update
-    @order = find_or_create_order
-    @order.ip_address = request.remote_ip
+    if params[:cash_on_delivery] == 'cash_on_delivery'
+      expire_all_browser_cache
 
-    @credit_card ||= ActiveMerchant::Billing::CreditCard.new(cc_params)
-
-    address = @order.bill_address.cc_params
-
-    if !@order.in_progress?
       session_cart.mark_items_purchased(@order)
-      flash[:error] = I18n.t('the_order_purchased')
-      redirect_to myaccount_order_url(@order)
-    elsif @credit_card.valid?
-      if response = @order.create_invoice(@credit_card,
-                                          @order.credited_total,
-                                          {:email => @order.email, :billing_address=> address, :ip=> @order.ip_address },
-                                          @order.amount_to_credit)
-        if response.succeeded?
-          expire_all_browser_cache
-          ##  MARK items as purchased
-          session_cart.mark_items_purchased(@order)
-          session[:last_order] = @order.number
-          redirect_to( confirmation_shopping_order_url(@order) ) and return
-        else
-          flash[:alert] =  [I18n.t('could_not_process'), I18n.t('the_order')].join(' ')
-        end
-      else
-        flash[:alert] = [I18n.t('could_not_process'), I18n.t('the_credit_card')].join(' ')
-      end
-      form_info
-      render :action => 'index'
+      session[:last_order] = @order.number
+      redirect_to( confirmation_shopping_order_url(@order) ) and return
     else
-      form_info
-      flash[:alert] = [I18n.t('credit_card'), I18n.t('is_not_valid')].join(' ')
-      render :action => 'index'
+      @order = session_order
+      @order.ip_address = request.remote_ip
+      omnikassa                   = OmniKassa::Request.new
+      omnikassa.order_id          = @order.id
+      omnikassa.amount            = '789' #@order.amount
+      omnikassa.normal_return_url = result_checkout_url
+      omnikassa.automatic_response_url = result_checkout_url
+      @res = omnikassa.perform
+
+      render 'checkout/processing', layout: false
     end
+
+    # address = @order.bill_address.cc_params
+
+    # if !@order.in_progress?
+    #   session_cart.mark_items_purchased(@order)
+    #   flash[:error] = I18n.t('the_order_purchased')
+    #   redirect_to myaccount_order_url(@order)
+    # elsif @credit_card.valid?
+    #   if response = @order.create_invoice(@credit_card,
+    #                                       @order.credited_total,
+    #                                       {:email => @order.email, :billing_address=> address, :ip=> @order.ip_address },
+    #                                       @order.amount_to_credit)
+    #     if response.succeeded?
+    #       expire_all_browser_cache
+    #       ##  MARK items as purchased
+    #       session_cart.mark_items_purchased(@order)
+    #       session[:last_order] = @order.number
+    #       redirect_to( confirmation_shopping_order_url(@order) ) and return
+    #     else
+    #       flash[:alert] =  [I18n.t('could_not_process'), I18n.t('the_order')].join(' ')
+    #     end
+    #   else
+    #     flash[:alert] = [I18n.t('could_not_process'), I18n.t('the_credit_card')].join(' ')
+    #   end
+    #   form_info
+    #   render :action => 'index'
+    # else
+    #   form_info
+    #   flash[:alert] = [I18n.t('credit_card'), I18n.t('is_not_valid')].join(' ')
+    #   render :action => 'index'
+    # end
   end
 
   def confirmation

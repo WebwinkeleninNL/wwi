@@ -1,8 +1,10 @@
 Hadean::Application.routes.draw do
 
+  get "/auth/facebook/callback" => 'user_sessions#omniauth_callbak'
   post '/locale' => 'welcome#locale'
 
   get '/checkout' => 'checkout#index'
+  post '/checkout/result' => 'checkout#result', as: :result_checkout
   get '/checkout/2' => 'checkout#step_two'
   get '/signup' => 'user_sessions#signup'
 
@@ -217,7 +219,11 @@ Hadean::Application.routes.draw do
         resources :prototypes,          only: [:update]
         resources :tax_categories,      only: [:index, :create, :update]
         resources :shipping_categories, only: [:index, :create, :update]
-        resources :product_types,       only: [:index, :create, :update]
+        resources :product_types,       only: [:index, :create, :update] do
+          collection do
+            get :autocomplete_product_type_name
+          end
+        end
       end
 
       namespace :multi do

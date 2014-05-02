@@ -1,80 +1,94 @@
-  <% if @shopping_address.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@shopping_address.errors.count, "error") %> prohibited this shipping address from being saved:</h2>
+<% if @shopping_address.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@shopping_address.errors.count, "error") %> prohibited this shipping address from being saved:</h2>
 
-      <ul>
-      <% @shopping_address.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-<div class='main-address seven' >
-    <div class="inline twelve large-12 ">
-      <div class="field six large-6 columns">
-         <%= f.label :first_name %>
-         <%= f.text_field :first_name, :class => '' %>
+    <ul>
+    <% @shopping_address.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
+
+      <h2 class="opc-subheader">Shipping Address</h2>
+      <div class="control-group">
+        <%= f.label :first_name %>
+        <%= f.text_field :first_name, :class => 'opc-input-text' %>
       </div>
-
-      <div class="field six large-6 columns">
+      <div class="control-group">
         <%= f.label :last_name %>
-        <%= f.text_field :last_name, :class => '' %>
+        <%= f.text_field :last_name, :class => 'opc-input-text' %>
       </div>
-    </div>
-    <div class='clear'></div>
-      <div class="twelve large-12 columns">
-        <div class="field">
-          <%= f.label :address1 %>
-          <%= f.text_field :address1 %><br/>
-
-          <%= f.label :address2 %>
-          <%= f.text_field :address2 %>
-        </div>
+      <div class="control-group">
+        <%= f.label :address1 %>
+        <%= f.text_field :address1, :class => 'opc-input-text' %>
       </div>
-
-    <div class='clearfix'></div>
-      <div class=" twelve large-12 clearfix">
-        <div class="field five large-5 columns">
-          <%= f.label :city %>
-          <%= f.text_field :city %>
-        </div>
-
-      <% if Settings.require_state_in_address %>
-        <div class="field four large-4 columns">
+      <div class="control-group">
+        <%= f.label :address2 %>
+        <%= f.text_field :address2, :class => 'opc-input-text' %>
+      </div>
+      <div class="control-group">
+        <%= f.label :city %>
+        <%= f.text_field :city, :class => 'opc-input-text' %>
+      </div>
+      <div class="control-group">
+        <% if Settings.require_state_in_address %>
           <%= f.label    :state_id, "State/Province" %>
-          <%= f.select   :state_id, @states,
-                        {:include_blank => true, :prompt => "State"} %>
+          <%= f.select   :state_id, @states, {:include_blank => true, :prompt => "State"} %>
         </div>
       <% elsif countries.size == 1 %>
-        <div class="field column">
           <%= f.label :country_id, "Country" %>
           <%= countries.first.name %>
           <%= f.hidden_field   :country_id %>
-        </div>
       <% else %>
-        <div class="field column">
           <%= f.label    :country_id, "Country" %>
-          <%= f.select   :country_id, select_countries,
-                        :include_blank => true %>
-        </div>
+          <%= f.select   :country_id, select_countries, :include_blank => true %>
       <% end %>
-
-        <div class="field two large-2 columns">
+      </div>
+      <div class="control-group">
           <%= f.label :zip_code %>
           <%= f.text_field :zip_code %>
-        </div>
-      </div>
 
+      </div>
+    </div>
 </div>
 
-  <div class="field twelve large-12 column" style='margin-bottom:10px;'>
-    <label for='address_default' class='ten large-10' style='margin-top:3px;display: inline-block;'>
-      <%= f.check_box :default, :class => 'columns' %>
-      Make this my default shipping address
-    </label>
+
+  <h2 class="opc-subheader">Shipping Address</h2>
+  <div class="control-group">
+  <label>First name</label>
+  <input class="opc-input-text" type="text" value="" size="32" name="">
+  </div>
+  <div class="control-group">
+  <label>Last name</label>
+  <input class="opc-input-text" type="text" value="" size="32" name="">
+  </div>
+  <div class="control-group">
+  <label>Adress 1</label>
+  <input class="opc-input-text" type="text" value="" size="32" name="">
+  </div>
+  <div class="control-group">
+  <label>Adress 2</label>
+  <input class="opc-input-text" type="text" value="" size="32" name="">
+  </div>
+  <div class="control-group">
+  <label>City</label>
+  <input class="opc-input-text" type="text" value="" size="32" name="">
+  </div>
+  <div class="control-group">
+  <label>State/Province</label>
+  <select class="opc-input-text">
+    <option value="">Lorem ipsum</option>
+    <option value="">Salabim</option>
+    <option value="">Domsimdom</option>
+    <option value="">Printing text</option>
+  </select>
+  </div>
+  <div class="control-group">
+  <label>Zip code<label>
+  <input class="opc-input-text" type="text" value="" size="32" name="">
+  </label></label></div>
   </div>
 
-  <div class="actions column">
-    <%= f.submit 'Submit', :class => 'button' %>
-  </div>
-<div class='clearfix'></div>

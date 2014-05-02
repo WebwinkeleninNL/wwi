@@ -23,19 +23,7 @@
 
     <div class="header-right">
       <div class="shoppingbag">
-        <a href="/">
-          <%= image_tag "frontend/cart.png", class: "cart", alt: "cart" %>
-        </a>
-        <a class="bag-items minicart" rel="nofollow" href="/">
-          <span class='items'>0</span> ITEMS, TOTAAL €<span>0,00</span>
-        </a>
-        <div class='mini-basket' style='display: none'>
-          <div class='flash_notice'></div>
-          <div class='items'></div>
-          <div>
-            <a href='/checkout?step=1'><%=t '.checkout' %></a>
-          </div>
-        </div>
+        <%= render 'shared/minicart' %>
       </div>
     </div>
 
@@ -64,6 +52,7 @@
         <a href="/login">Klant Login</a>
       <% else %>
         <%= link_to current_user.full_name, customer_profile_path %>
+        <%= link_to 'loguot', logout_path, method: :delete %>
       <% end %>
       </li>
     </ul>

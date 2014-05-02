@@ -63,13 +63,6 @@ $('select.styled').customSelect();
 </div>
 <div class="search">
 <form name="productsearchform" action="/" method="post">
-<input type="hidden" value="Y" name="simple_search">
-<input type="hidden" value="search" name="mode">
-<input type="hidden" value="Y" name="posted_data[by_title]">
-<input type="hidden" value="Y" name="posted_data[by_shortdescr]">
-<input type="hidden" value="Y" name="posted_data[by_fulldescr]">
-<input type="hidden" value="Y" name="posted_data[by_sku]">
-<input type="hidden" value="all" name="posted_data[including]">
 <input type="text" placeholder="Zoeken..." name="posted_data[substring]" size="24">
 <a href="javascript:document.productsearchform.submit()">
 <img alt="Zoeken" src="images/search.png">
@@ -86,132 +79,168 @@ Gratis Verzending vanaf &euro; 50!&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;Vóór 17
 <div class="breadcrumb">
 <a href="/">Home</a>
 &nbsp;&raquo;&nbsp;
-<a href="/">Herenmode</a>
-&nbsp;&raquo;&nbsp;
-<a href="/">Jassen</a>
-&nbsp;&raquo;&nbsp;
-Dstrezzed Puffer Jacket Bruin
+One Page Checkout
 </div>
 
 
 <div class="content">
-
-<div class="product-images">
-	<a class="terug-link" href="/">«&nbsp;Terug naar overzicht</a>
-	
-<div class="thumbnails" class="">
-<div class="up-arrow">
-	<!--<img src="/nap/build/2014.03.00/images/productDetails/uparrow.jpg" class="up-arrow-class" alt="down-arrow"/>-->
-	<span class="thumbnails-arrow"></span>
-</div>
-<div class="thumbnails-container">
-<img src="images/detailfoto2.jpg" alt="" />
-<img src="images/detailfoto3.jpg" alt="" />
-<img src="images/detailfoto5.jpg" alt="" />
-<img src="images/detailfoto6.jpg" alt="" />
-</div>
+<!---------------------------------------------------------------------->
 
 
-</div><!-- thumbnails -->
 
-<div class="large-image">
-<img src="images/detailfoto.jpg" alt="" /><br />
-Klik om te zoomen
+
+<div class="opcbox-main clearfix">
+<h1 class="page-title">One Page Checkout</h1>
+<div class="opcbox-body">
+<div class="checkout-steps clearfix">
+<div class="step-container-active">
+<h2 class="step-title-active clearfix">
+<span class="step-number">1</span>Inloggen</a></h2>
+<div class="step-body-active">
+<div class="clearfix">
+<div class="login-form">
+<form method="post">
+<div class="checkout-login-form"><h2 class="opc-subheader">Terugkerende klant</h2>
+<div class="control-group">
+<label>E-mail</label>
+<input name="user_login" size="30" placeholder="E-mail adres"  value="" class="opc-input-text" type="text">
+</div>
+<div class="control-group password">
+<label class="forgot-password-label">Wachtwoord</label><a href="" class="forgot-password">Wachtwoord vergeten?</a>
+<input name="password" size="30" placeholder="Wachtwoord" value="" class="opc-input-text" maxlength="32" type="password">
+</div>
+<div class="captcha control-group">
+<label>Captcha</label>
+<input autocomplete="off" class="opc-input-text" value="" type="text">
+<div class="captcha-code"><img src="images/captcha.jpg" alt="Captcha" height="25" width="100">
+</div>
+Typ de tekens die u in de afbeelding hierboven ziet.
+</div>
+</div>
+<div class="checkout-buttons clearfix">
+<div class="clearfix">
+<div style="float:right;"><input class="main-button" value="Aanmelden" type="submit"></div>
+<div class="remember-me-chekbox">
+<label class="valign"><input type="checkbox">Onthoud mij</label>
+</div>
+</div>
+</div>
+</form>
 </div>
 
-	</div> <!-- product-images -->
-<div class="product-info">
 
-<div class="product-details">
-<h1>Dstrezzed Puffer Jacket Bruin</h1>
-<h2><a href="/">DSTREZZED</a></h2>
 
-<span class="price strike">99,00 EUR</span>&nbsp;&nbsp;
-<span class="price discount">69,00 EUR</span>
-</div>
-<div class="description">
-<span>Beschrijving</span><br />
-Gewatteerde jas van Dstrezzed met contrast rits. De jas heeft twee zakken aan de voorkant met een drukknoop. De jas is gemaakt van 100% polyester. Gewatteerde jas van Dstrezzed met contrast rits. De jas heeft twee zakken aan de voorkant met een drukknoop. De jas is gemaakt van 100% polyester.
-</div>
-<div class="viewmore product-actions-wrapper">
-<span class="response-message"></span>
-<form action="" method="post">
 
-<div class="button-block">
-<div class="quantity">
-<input class="minus" type="button" value="-">
-<input class="input-text qty text" type="number" size="4" title="Qty" value="1" name="quantity" step="1" min="1" max="46">
-<input class="plus" type="button" value="+">
+<div class="checkout-register">
+<div class="register-content">
+<h2 class="opc-subheader">Nieuwe Klant</h2>
+<ul class="register-methods">
+<li class="one">
+<input class="radio valign" name="checkout_type" value="" checked="checked" type="radio">
+<label><span class="method-title">Registreer</span><span class="method-hint">Maak een account en gebruik het voor de kassa</span></label>
+</li>
+<li>
+<input class="radio valign" name="checkout_type" value="" type="radio">
+<label><span class="method-title">Afrekenen als gast</span><span class="method-hint">Snel afrekenen zonder een account</span></label>
+</li>
+</ul>
 </div>
-<div class="button">
-<input name="shoppingBag" value="Plaats in winkelwagen" class="main-button" type="submit">
-</div>
-<div class="button">
-<div class="wishlist " class="add-wishlist">
-<div class="product-wishlist">
-<input name="wishlist" value="Voeg toe aan wenslijst" class="second-button" type="submit">
+<div class="checkout-buttons">    
+<input value="Registreer" class="main-button" type="submit">
 </div>
 </div>
 </div>
 
+			
 <div class="clear"></div>
 </div>
-</form></div> <!-- viewmore -->
+</div>
+			
+<div class="step-container step-two">
+<h2 class="step-title clearfix"><span class="step-number">2</span><a class="title">Factuur-en verzendadres</a></h2>
+</div>
+<div class="step-container">
+<h2 class="step-title clearfix">
+<span class="step-number">3</span>
+<a class="title">Verzendopties</a>
+</h2>
+</div>
+<div class="step-container step-four">
+<h2 class="step-title clearfix">
+<span class="step-number">4</span>
+<a class="title">Factureringsopties</a>
+</h2>
+</div>
+</div>
+</div>
+</div>
 
-<div class="product-details-container">
-<ul class="product-details-list">
-<li class="product-detail">
-<span class="title"><a href="#">Tabblad 1</a></span>
-</li>
-<li class="product-detail open">
-<span class="title"><a href="#">Tabblad 2</a></span>
-<ul style="display: block;" class="tabblad">
+
+
+
+<div class="order-summary">
+<h3 class="sidebox-title">Samenvatting Bestelling</h3>
+<div class="sidebox-body">
+<div class="checkout-summary">
+<table>
+<tbody class="tbody">
+<tr>
+<td>3 item(s)</td>
+<td class="right">
+<span>&euro;1.297.00</span>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<div class="code-input discount-coupon">
+<form action="" method="post">
+<div class="control-group input-append">
+<label for="coupon_field">Coupon code</label>
+<input class="opc-input-text" size="40" value="" placeholder="Vul coupon code hier in..." type="text">
+</div>
+</form>
+</div>
+</td>
+</tr>
+</tbody>
+<tbody class="total">
+<tr>
+<th colspan="2">
+Totaal
+<span class="total-sum">&euro;699.00</span>
+</th>
+</tr>
+</tbody>
+</table>                        
+</div>
+</div>
+</div>
+<div class="opc-sidebox order-products">
+<h3 class="sidebox-title">Producten in uw bestelling</h3>
+<div class="sidebox-body">
+<ul class="order-product-list">
 <li>
-<div class="tabinhoud">
-<ul><li>Lorem ipsum is dummy text for printing industry</li>
-<li> At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
+<a href="" class="product-name">Lorem ipsum dummy text</a>    
+<a href="" class="delete"> X</a>
+<span class="product-price">1&nbsp;x&nbsp;&euro;699.00</span>
+</li>
+<li>
+<a href="" class="product-name">Lorem ipsum dummy text</a>    
+<a href="" class="delete"> X</a>
+<span class="product-price">1&nbsp;x&nbsp;&euro;199.00</span>
+</li>
+<li>
+<a href="" class="product-name">Lorem ipsum dummy text</a>    
+<a href="" class="delete"> X</a>
+<span class="product-price">1&nbsp;x&nbsp;&euro;399.00</span>
 </li>
 </ul>
 </div>
-</li>
-</ul>
-</li>
-<li class="product-detail">
-<span class="title"><a href="#">Tabblad 3</a></span>
-</li>
-</ul>
-
-<br /><br />
-<span>Deel op:</span>
-
-<ul class="sociallinks">
-<li class="share-facebook">
-<a href="/" class="socialicon icon-fb" target="_blank" data-service="facebook"></a>
-</li>
-<li class="share-twitter">
-<a href="/" class="socialicon icon-twitter" target="_blank" data-service="twitter">
-</a>
-</li>
-<li class="share-google-plus1">
-<a href="/" class="socialicon icon-plus" target="_blank" data-service="googleplus"></a>
-</li>
-<li class="share-tumblr">
-<a href="/" class="socialicon icon-tumblr" target="_blank" data-service="tumblr"></a>
-</li>
-<li class="share-pinterest">
-<a href="/" class="socialicon icon-pin" target="_blank" data-service="pinterest"></a>
-</li>
-<li class="share-email">
-<a href="/" class="tell-a-friend-link" class="socialicon icon-email" target="_blank"></a>
-</li>
-</ul>
-<br /><br />
-Artikelnummer leverancier: 100001063 - Hulp nodig? <a class="klantcontact" href="/">Neem contact op</a>
-</div>
-
 </div>
 
 
+
+<!---------------------------------------------------------------------->
 </div>
 
 

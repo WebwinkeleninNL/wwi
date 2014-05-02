@@ -129,3 +129,7 @@ gem 'kaminari'
 gem 'recaptcha', :require => "recaptcha/rails"
 
 gem 'omni_kassa'
+
+gem 'omniauth-facebook'
+
+gem 'rails3-jquery-autocomplete'

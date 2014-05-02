@@ -46,7 +46,7 @@ class User < ActiveRecord::Base
     config.validates_uniqueness_of_login_field_options :case_sensitive => true
     config.validates_uniqueness_of_email_field_options :case_sensitive => true
 
-    config.validate_login_field = true;
+    #config.validate_login_field = true;
     config.validate_email_field = true;
   end
 

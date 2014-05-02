@@ -1,4 +1,6 @@
 class Admin::Merchandise::Wizards::ProductTypesController < Admin::Merchandise::Wizards::BaseController
+  autocomplete :product_type, :name
+
   helper_method :selected?
   def index
     form_info

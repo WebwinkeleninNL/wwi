@@ -26,3 +26,17 @@ rake task
 rake db:test:prepare  blows up on SQLite
 
 b2b  (invoice)
+
+---
+
+buy click:
+
+  1. [BACKEND] send to server request +
+
+  2. [BOTH] setup a cookies with product
+  3. [FRONTEND] update basket html
+  4. [FRONTEND] uniq product in basker
+
+On any page load:
+
+  1. [FRONTEND] on page load, read cookies, create basket html

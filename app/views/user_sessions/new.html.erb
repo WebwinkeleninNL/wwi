@@ -13,3 +13,11 @@
 <div id='login-wrapper' class='hadean-login'>
   <%= render 'shared/login', session: @user_session %>
 </div>
+
+<div id='login-wrapper' class='hadean-login'>
+  <h2>New for <%= site_name %>?</h2>
+  <%= link_to 'Sign up', signup_path %>
+
+  <%= link_to image_tag('frontend/fb.png'), '/auth/facebook?display=popup' %>
+
+</div>

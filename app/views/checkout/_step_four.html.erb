@@ -1,0 +1,12 @@
+<%= form_tag :payment_methods, url: shopping_order_path, method: :post, html: {class: 'custom'} do |f| %>
+<table class="payment-methods">
+  <tbody>
+  <tr>
+    <td><%= f.radio :cash_only %>Cash on delivery</td>
+  </tr>
+  <tr>
+    <td><%= f.radio :omni %>RabboBank OmniCassa</td>
+  </tr>
+  </tbody>
+</table>
+<% end %>

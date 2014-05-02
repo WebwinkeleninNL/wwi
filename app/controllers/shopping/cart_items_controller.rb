@@ -15,15 +15,21 @@ class Shopping::CartItemsController < Shopping::BaseController
       session_cart.save_user(most_likely_user)
       respond_to do |form|
         form.html{ redirect_to(shopping_cart_items_url) }
-        form.json{ render json: {test: 1} }
+        form.json{ render json: {status: 'success'}, status: :ok }
       end
     else
       variant = Variant.includes(:product).find_by_id(params[:cart_item][:variant_id])
-      if variant
-        redirect_to(product_url(variant.product))
-      else
-        flash[:notice] = I18n.t('something_went_wrong')
-        redirect_to(root_url())
+      respond_to do |form|
+        if variant
+          form.html{ redirect_to(product_url(variant.product)) }
+          form.json{ render json: {status: 'error', message: 'can not save'}, status: :error }
+        else
+          form.html{
+            flash[:notice] = I18n.t('something_went_wrong')
+            redirect_to(root_url())
+          }
+          form.json{ render json: {status: 'error', message: I18n.t('something_went_wrong')}, status: :error }
+        end
       end
     end
   end

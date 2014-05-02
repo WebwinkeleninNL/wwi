@@ -27,13 +27,14 @@ class Shopping::AddressesController < Shopping::BaseController
       @shopping_address = current_user.addresses.find(params[:shopping_address_id])
     end
 
-      if @shopping_address.id
-        update_order_address_id(@shopping_address.id)
-        redirect_to(shopping_shipping_methods_url, :notice => 'Address was successfully created.')
-      else
-        form_info
-        render :action => "index"
-      end
+    if @shopping_address.id
+      update_order_address_id(@shopping_address.id)
+      #redirect_to(shopping_shipping_methods_url, :notice => 'Address was successfully created.')
+      redirect_to(checkout_path(step: 3), :notice => 'Address was successfully created.')
+    else
+      form_info
+      render :action => "index"
+    end
   end
 
   def update
@@ -60,7 +61,10 @@ class Shopping::AddressesController < Shopping::BaseController
   def select_address
     address = current_user.addresses.find(params[:id])
     update_order_address_id(address.id)
-    redirect_to shopping_shipping_methods_url
+
+    # REwrite
+    #redirect_to shopping_shipping_methods_url
+    redirect_to checkout_path(step: 3)
   end
 
   def destroy

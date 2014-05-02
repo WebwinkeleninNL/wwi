@@ -5,6 +5,8 @@ de:
   nl: Niederlande
   en: Englisch
   de: Deutsch
+  minicart:
+    checkout: Checkout
   checkout:
     index:
       page-title: One Page Checkout
