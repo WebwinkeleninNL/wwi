@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html data-ng-app='manageApp'>
+<head>
+  <title></title>
+  <%= stylesheet_link_tag 'admin/manage', 'admin/normalize' %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+  <div class="container-fluid">
+    <%= yield %>
+  </div>
+
+  <%= javascript_include_tag 'jquery',
+                              'admin/angular/angular.js',
+                              'admin/angular/angular-route.js',
+                              'admin/angular/angular-resource.js',
+                              'manage/app',
+                              'manage/controllers/merchants_controller',
+                              'manage/controllers/merchant_details_controller' %>
+</body>
+</html>
+

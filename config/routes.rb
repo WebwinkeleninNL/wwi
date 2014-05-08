@@ -1,4 +1,7 @@
 Hadean::Application.routes.draw do
+  get '/manage' => 'admin/manage#dashboard'
+  get '/manage/merchants' => 'admin/manage#merchants'
+  get '/manage/merchant' => 'admin/manage#merchant'
 
   get "/auth/facebook/callback" => 'user_sessions#omniauth_callbak'
   post '/locale' => 'welcome#locale'
@@ -247,9 +250,7 @@ Hadean::Application.routes.draw do
     end
   end
 
-  #
-  #
-  #
-  get ':product_type_name' => 'products#index'
+  # FIXME: expect favicon.ico
+  get ':product_type_name' => 'products#index', constraints: { product_type_name: /favicon\.ico/i }
 
 end

@@ -31,9 +31,12 @@ Klik om te zoomen
 
   </div> <!-- product-images -->
 <div class="product-info"
+     data-id='<%= @product.id %>'
      data-url='<%= product_path(@product) %>'
      data-name='<%= @product.name %>'
-     data-variant-id='<%= @product.variants.first.id %>'>
+     data-price='<%= @product.price %>'
+     data-variant-id='<%= @product.variants.first.id %>'
+     data-image-url='<%= @product.images.first.photo.url(:small) %>'>
 
 <div class="product-details">
 <h1>Dstrezzed Puffer Jacket Bruin</h1>

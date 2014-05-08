@@ -26,7 +26,7 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
   end
 
   def create
-    @product = Product.new(allowed_params.merge(merchant_id: current_user.merchant_id))
+    @product = Product.new(allowed_params)
 
     if @product.save
       flash[:notice] = "Success, You should create a variant for the product."

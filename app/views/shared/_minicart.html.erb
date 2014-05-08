@@ -1,22 +1,15 @@
-<div id="minicart-outer">
+<div id='minicart-outer'>
   <%= link_to image_tag('frontend/cart.png', class: 'cart', alt: 'cart'), '#' %>
   <a class="bag-items minicart" rel="nofollow" href="/">
-    <span class='items'>0</span> ITEMS, TOTAAL &euro;<span>0,00</span>
+    <span class='items'>0</span> ITEMS, TOTAAL &euro;<span class='price'>0,00</span>
   </a>
 
-  <div id="minicart_popup">
+  <div id='minicart_popup'>
     <div class="minicart_popup_arrow schuif"></div>
     <ul>
-      <% 3.times do %>
-      <li>
-        <%= image_tag 'frontend/product4.jpg', height: 50 %>
-        <%= link_to 'Lorem ipsum sample text', '#' %>
-        <span class="price"><span class="currency">&euro;</span>79,95<%= link_to image_tag('frontend/minicart_popup_delete.png', alt: 'Verwijderen'), '#' %></span>
-      </li>
-      <% end %>
     </ul>
     <div class="minicart_popup_total">
-      Totaalprijs: <strong><span class="currency">&euro;</span>239,85</strong>
+      Totaalprijs: <strong><span class="currency">&euro;</span><span class='price'></span></strong>
     </div>
     <div class="minicart_popup_bottom">
       <a href="/checkout?step=1"><%=t 'minicart.checkout' %><%= image_tag 'frontend/cart_white.png', alt: 'Checkout' %></a>

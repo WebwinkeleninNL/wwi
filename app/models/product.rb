@@ -42,7 +42,8 @@ class Product < ActiveRecord::Base
   belongs_to :prototype
   belongs_to :shipping_category
 
-  belongs_to :user
+  belongs_to :user # author
+  belongs_to :merchant
 
   has_many :product_properties
   has_many :properties,         through: :product_properties
@@ -66,6 +67,7 @@ class Product < ActiveRecord::Base
 
   validates :shipping_category_id,  presence: true
   validates :product_type_id,       presence: true
+  validates :merchant_id,           presence: true
   validates :name,                  presence: true,   length: { maximum: 165 }
   validates :description_markup,    presence: true,   length: { maximum: 2255 },     if: :active
   validates :meta_keywords,         presence: true,        length: { maximum: 255 }, if: :active

@@ -62,6 +62,7 @@ GEM
       builder
       multi_json
     american_date (1.1.0)
+    angularjs-rails-resource (1.0.2)
     arel (4.0.1)
     ast (1.1.0)
     atomic (1.1.14)
@@ -239,6 +240,7 @@ GEM
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-ssh (2.7.0)
+    ng-rails-csrf (0.1.0)
     nio4r (1.0.0)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
@@ -433,6 +435,7 @@ DEPENDENCIES
   activemerchant (~> 1.29.3)
   airbrake
   american_date
+  angularjs-rails-resource (~> 1.0.0)
   authlogic!
   autotest-rails-pure
   awesome_nested_set (~> 3.0.0.rc.1)
@@ -471,6 +474,7 @@ DEPENDENCIES
   launchy
   mocha (~> 0.13.3)
   mysql2 (~> 0.3.12)
+  ng-rails-csrf
   nokogiri (~> 1.6.0)
   omni_kassa
   omniauth-facebook

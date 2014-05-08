@@ -1,0 +1,62 @@
+<a href='#/'>Back</a>
+
+<div id='merchant' class='row'>
+  <div class='col-xs-6 col-sm-4'>
+    <h3>{{ merchant.name }}</h3>
+    <div>
+      <p>Url: {{ merchant.url }}</p>
+      <p>Phone: {{ merchant.phone }}</p>
+      <p>Email: {{ merchant.email }}</p>
+      <p>Location: {{ merchant.location }}</p>
+      <p>Descpriotn: {{ merchant.description }}</p>
+      <p>Date created at: {{ merchant.created_at }}</p>
+      <p>Date updated at: {{ merchant.updated_at }}</p>
+    </div>
+  </div>
+
+  <div class='col-xs-6 col-sm-4'>
+    <form role='form'>
+      <h4>Edit merchant</h4>
+      <div>
+        <div class='form-group'>
+          <label for="name">Name</label>
+          <input name='name' placeholder='Nike Store NL' data-ng-model="merchant.name" class='form-control'/>
+        </div>
+        <div class='form-group'>
+          <label for='url'>Url</label>
+          <input placeholder='site-example.com'  data-ng-model="merchant.url" class='form-control'/>
+        </div>
+        <div class='form-group'>
+        <label for='email'>Email address</label>
+          <input name='email' placeholder='john.doe@gmail.com' data-ng-model="merchant.email" type='email' class="form-control" />
+        </div>
+        <div class='form-group'>
+          <label for='phone'>Phone number</label>
+          <input placeholder='+316656478986'  data-ng-model="merchant.phone" name='phone' class='form-control'/>
+        </div>
+        <div class='form-group'>
+          <label for='location'>Location</label>
+          <input name='location' placeholder='Asmterdam, Netherlands'  data-ng-model="merchant.location" class='form-control'/>
+        </div>
+        <div class='form-group'>
+          <label for='description'>About</label>
+          <textarea name="description" class='form-control' placeholder='Description' rows="10" cols='35' data-ng-model="merchant.description"/></textarea>
+        </div>
+
+        <div class='form-group'>
+          <button type="button" class="btn btn-primary" data-ng-click='updateMerchant()'>Update</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class='row'>
+  <h3>Orders</h3>
+  <table>
+    <tr ng-repeat="order in merchant.orders">
+      <td>{{ order.id }}</td>
+      <td>{{ order.created_at }}</td>
+    </tr>
+  </table>
+</div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140322123952) do
+ActiveRecord::Schema.define(version: 20140504175232) do
 
   create_table "accounting_adjustments", force: true do |t|
     t.integer  "adjustable_id",                           null: false
@@ -233,6 +233,8 @@ ActiveRecord::Schema.define(version: 20140322123952) do
     t.text   "description"
     t.string "email"
     t.string "phone"
+    t.string "location"
+    t.string "state"
   end
 
   create_table "newsletters", force: true do |t|
@@ -276,13 +278,11 @@ ActiveRecord::Schema.define(version: 20140322123952) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.decimal  "credited_amount", precision: 8, scale: 2, default: 0.0
-    t.integer  "merchant_id"
   end
 
   add_index "orders", ["bill_address_id"], name: "index_orders_on_bill_address_id"
   add_index "orders", ["coupon_id"], name: "index_orders_on_coupon_id"
   add_index "orders", ["email"], name: "index_orders_on_email"
-  add_index "orders", ["merchant_id"], name: "index_orders_on_merchant_id"
   add_index "orders", ["number"], name: "index_orders_on_number"
   add_index "orders", ["ship_address_id"], name: "index_orders_on_ship_address_id"
   add_index "orders", ["user_id"], name: "index_orders_on_user_id"

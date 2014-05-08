@@ -52,7 +52,9 @@ class UserSessionsController < ApplicationController
       ## if there is a cart make sure the user_id is correct
       set_user_to_cart_items
       flash[:notice] = I18n.t('login_successful')
-      if @user_session.record.admin?
+      if @user_session.record.super_admin?
+        redirect_back_or_default manage_url
+      elsif @user_session.record.admin?
         redirect_back_or_default admin_url
       else
         session[:return_to] = checkout_path(step: 2)

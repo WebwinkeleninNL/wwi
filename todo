@@ -1,0 +1,14 @@
+basket:
+
+at first time:
+
+1. Minicart should be an empty
+2. counter should be zero-s.
+
+click on buy:
+1. open up minicart
+2. +1 item, + price of product
+3. added element to minicart
+
+then after reload or visit any over pages
+minicart should contain bought product.

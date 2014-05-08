@@ -133,3 +133,6 @@ gem 'omni_kassa'
 gem 'omniauth-facebook'
 
 gem 'rails3-jquery-autocomplete'
+gem 'ng-rails-csrf'
+
+gem 'angularjs-rails-resource', '~> 1.0.0'

@@ -28,6 +28,7 @@ Hadean::Application.configure do
   # Precompile additional assets
   config.assets.precompile += %w( .svg .eot .woff .ttf )
   config.assets.precompile += %w( *.js )
+  config.assets.precompile += %w( *.html )
   config.assets.precompile += [ 'admin.css',
                                 'admin/app.css',
                                 'admin/cart.css',
@@ -35,6 +36,7 @@ Hadean::Application.configure do
                                 'admin/normalize.css',
                                 'admin/help.css',
                                 'admin/ie.css',
+                                'admin/manage.css',
                                 'autocomplete.css',
                                 'application.css',
                                 'chosen.css',

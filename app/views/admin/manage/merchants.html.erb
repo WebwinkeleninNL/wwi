@@ -1,0 +1,66 @@
+<div id='merchants' class="row">
+  <div class='col-xs-12 col-sm-6 col-md-8'>
+    <h1>Merchants</h1>
+
+    <p><input data-ng-model='name' placeholder='Enter a merchant info' class='form-control' size='15'/></p>
+
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Location</th>
+          <th>Orders count</th>
+          <th>Users count</th>
+          <th>Last updated</th>
+          <th>State</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class='block' data-ng-repeat="merchant in merchants | filter:name | orderBy: 'name'">
+          <td><a href='#/merchant/{{merchant.id}}'>{{ merchant.name }}</a></td>
+          <td>{{ merchant.location }}</td>
+          <td>{{ merchant.orders_count }}</td>
+          <td>{{ merchant.users_count }}</td>
+          <td>{{ merchant.updated_at }}</td>
+          <td><span class="state {{ merchant.state }}">{{ merchant.state }}</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col-xs-6 col-md-4">
+    <form role='form'>
+      <h4>New merchant</h4>
+      <div>
+        <div class='form-group'>
+          <label for="name">Name</label>
+          <input name='name' placeholder='Nike Store NL' data-ng-model="newMerchant.name" class='form-control'/>
+        </div>
+        <div class='form-group'>
+          <label for='url'>Url</label>
+          <input placeholder='site-example.com'  data-ng-model="newMerchant.url" class='form-control'/>
+        </div>
+        <div class='form-group'>
+        <label for='email'>Email address</label>
+          <input name='email' placeholder='john.doe@gmail.com' data-ng-model="newMerchant.email" type='email' class="form-control" />
+        </div>
+        <div class='form-group'>
+          <label for='phone'>Phone number</label>
+          <input placeholder='+316656478986'  data-ng-model="newMerchant.phone" name='phone' class='form-control'/>
+        </div>
+        <div class='form-group'>
+          <label for='location'>Location</label>
+          <input name='location' placeholder='Asmterdam, Netherlands'  data-ng-model="newMerchant.location" class='form-control'/>
+        </div>
+        <div class='form-group'>
+          <label for='description'>About</label>
+          <textarea name="description" class='form-control' placeholder='Description' rows="10" cols='35' data-ng-model="newMerchant.description"/></textarea>
+        </div>
+
+        <div class='form-group'>
+          <button type="button" class="btn btn-primary" data-ng-click='addMerchant()'>Add</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

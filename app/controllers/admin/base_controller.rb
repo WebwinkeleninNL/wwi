@@ -8,7 +8,6 @@ class Admin::BaseController < ApplicationController
     @current_ability ||= AdminAbility.new(current_user)
   end
 
-
   private
 
   def recent_admin_users
