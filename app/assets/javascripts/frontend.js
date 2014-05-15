@@ -3,6 +3,14 @@
 //= require jquery.nouislider
 //= require jquery.cookie
 //= require jquery.modal
+//= require angular
+
+var myshopApp = angular.module('myshopApp', ['ngRoute']);
+
+myshopApp.config(['$routeProvider',function($routeProvider) {
+
+}]);
+
 
 $.cookie.defaults = {path: '/', secure: false, expires: 365};
 

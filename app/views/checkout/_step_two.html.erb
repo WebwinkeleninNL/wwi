@@ -1,12 +1,120 @@
-<div class="clearfix">
-  <div class="checkout-boxleft">
-    <div class="checkout-boxleft-form">
+<div class="step-body active" ng-init="states=[{name: 'A'},{name:  'B'},{name:  'C'}]; checked=true">
+  <div class="clearfix">
+
+    <div class="checkout-boxleft">
+      <div class="checkout-boxleft-form">
+        <h2 class="opc-subheader">Billing Address</h2>
+        <div class="control-group">
+          <form name='billing_address_form'>
+            <label>First name</label>
+            <input
+              class="opc-input-text"
+              type="text" value=""
+              size="32"
+              name=""
+              ng-model='first_name'
+              ng-change='shipping_address.first_name=first_name'
+              required/>
+            </div>
+            <div class="control-group">
+            <label>Last name</label>
+            <input
+              class='opc-input-text'
+              type='text'
+              size='32'
+              name=''
+              ng-model='last_name'
+              ng-change='shipping_address.last_name=last_name'
+              required/>
+            </div>
+            <div class="control-group">
+            <label>Adress 1</label>
+            <input
+              class="opc-input-text"
+              type="text"
+              size="32"
+              name=""
+              ng-model='address_1'
+              ng-change='shipping_address.address_1=address_1'
+              required/>
+            </div>
+            <div class="control-group">
+              <label>Adress 2</label>
+              <input
+                class="opc-input-text"
+                type="text"
+                size="32"
+                name=""
+                ng-model='address_2'
+                ng-change='shipping_address.address_2=address_2'/>
+            </div>
+            <div class="control-group">
+            <label>City</label>
+            <input
+              class="opc-input-text"
+              type="text"
+              size="32"
+              name=""
+              ng-model='city'
+              ng-change='shipping_address.city=city'/>
+            </div>
+            <div class="control-group">
+            <label>State/Province</label>
+            <select
+              class="opc-input-text"
+              ng-model='state1'
+              ng-options="state.name for state in states"
+              ng-change='shipping_address.state=state'/></select>
+          </form>
+        </div>
+        <div class="control-group">
+          <label>Zip code<label>
+          <input class="opc-input-text" type="text" value="" size="32" name=""
+              ng-model='zip_code'
+              ng-change='shipping_address.zip_code=zip_code'/>
+        </div>
+      </div>
+    </div>
+
+    <div class="checkout-boxright" style="opacity:1;">
+      <h2 class="opc-subheader">Shipping Address</h2>
+      <div class="control-group">
+        <label>First name</label>
+        <input class="opc-input-text" type="text" value=" {{ shipping_address.first_name }}" size="32" name="" ng-disabled="checked">
+      </div>
+      <div class="control-group">
+        <label>Last name</label>
+        <input class="opc-input-text" type="text" value="{{ shipping_address.last_name }}" size="32" name="" ng-disabled="checked">
+      </div>
+      <div class="control-group">
+        <label>Adress 1</label>
+        <input class="opc-input-text" type="text" value="{{ shipping_address.address_1 }}" size="32" name="" ng-disabled="checked">
+      </div>
+      <div class="control-group">
+        <label>Adress 2</label>
+        <input class="opc-input-text" type="text" value="{{ shipping_address.address_2 }}" size="32" name="" ng-disabled="checked">
+      </div>
+      <div class="control-group">
+        <label>City</label>
+        <input class="opc-input-text" type="text" value="{{ shipping_address.city }}" size="32" name="" ng-disabled="checked">
+      </div>
+      <div class="control-group">
+        <label>State/Province</label>
+        <select class="opc-input-text" ng-model='shipping_address.state' ng-options="state.name for state in states" ng-disabled="checked"></select>
+      </div>
+      <div class="control-group">
+        <label>Zip code<label>
+        <input class="opc-input-text" type="text" value="{{ shipping_address.zip_code }}" size="32" name="" ng-disabled="checked">
+      </div>
     </div>
   </div>
-  <div class="checkout-boxright" style="opacity:0.35;">
-    <%= form_for @shopping_address, url: shopping_addresses_path, html: {class: 'custom'} do |address_form| %>
-      <%= render :partial => 'shopping/addresses/form', :locals => {:f => address_form}  %>
-      <%= f.submit 'Submit', :class => 'button' %>
-    <% end %>
+
+  <div class="checkout-buttons clearfix">
+    <div class="clearfix">
+      <label class="valign">
+        <input type="checkbox" checked="checked" ng-model='checked'>Billing and shipping address are the same</label>
+        <input style="float:right;" class="main-button" value="Next step" type="submit">
+    </div>
   </div>
+
 </div>

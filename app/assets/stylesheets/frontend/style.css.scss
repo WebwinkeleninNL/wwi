@@ -1339,6 +1339,20 @@ background:url(image_path('frontend/customSelect-arrow.png')) no-repeat center r
     margin: 0 0 0 3%;
     width: 45%;
 }
+.checkout-boxleft {
+    float: left;
+    padding-right: 3%;
+    width: 47%;
+}
+.checkout-boxleft .checkout-boxleft-form {
+    margin: 0 20px;
+}
+.checkout-boxright {
+    position: relative;
+    float: left;
+    margin: 0 0 0 3%;
+    width: 45%;
+}
 .checkout-register .control-group {
     padding: 0 20px;
 }
@@ -1532,4 +1546,8 @@ ul.register-methods {
     display: block;
     margin: 10px 0;
     min-width: 130px;
+}
+
+input[disabled]{
+  background: #E8E8E8;
 }

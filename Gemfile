@@ -135,4 +135,5 @@ gem 'omniauth-facebook'
 gem 'rails3-jquery-autocomplete'
 gem 'ng-rails-csrf'
 
+gem 'angularjs-rails'
 gem 'angularjs-rails-resource', '~> 1.0.0'

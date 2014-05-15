@@ -1,0 +1,58 @@
+  <div class="order-summary">
+    <h3 class="sidebox-title"><%=t '.samenvatting_bestelling' %></h3>
+    <div class="sidebox-body">
+      <div class="checkout-summary">
+        <table>
+          <tbody class="tbody">
+            <tr>
+              <td><span class='items'><%= debug session_order %></span> item(s)</td>
+              <td class="right"><span>€1.297.00</span></td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <div class="code-input discount-coupon">
+                  <form action="" method="post">
+                    <div class="control-group input-append">
+                      <label for="coupon_field">Coupon code</label>
+                      <input class="opc-input-text" size="40" value="" placeholder="Vul coupon code hier in..." type="text">
+                    </div>
+                  </form>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+            <tbody class="total">
+              <tr>
+                <th colspan="2">
+                  Totaal
+                  <span class="total-sum">€699.00</span>
+                </th>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="opc-sidebox order-products">
+    <h3 class="sidebox-title"><%=t '.producten_in_uw_bestelling' %></h3>
+    <div class="sidebox-body">
+      <ul class="order-product-list">
+      <li>
+      <a href="" class="product-name">Lorem ipsum dummy text</a>
+      <a href="" class="delete"> X</a>
+      <span class="product-price">1&nbsp;x&nbsp;€699.00</span>
+      </li>
+      <li>
+      <a href="" class="product-name">Lorem ipsum dummy text</a>
+      <a href="" class="delete"> X</a>
+      <span class="product-price">1&nbsp;x&nbsp;€199.00</span>
+      </li>
+      <li>
+      <a href="" class="product-name">Lorem ipsum dummy text</a>
+      <a href="" class="delete"> X</a>
+      <span class="product-price">1&nbsp;x&nbsp;€399.00</span>
+      </li>
+      </ul>
+    </div>
+  </div>
